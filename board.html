@@ -7,6 +7,8 @@
     <script src="board.js"></script>
     <script src="main.js"></script>
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="board.css">
+
     <title>Board</title>
 
     <!-- CSS only -->
@@ -14,10 +16,27 @@
 </head>
 <body>
     <div class="board-main-body"> 
-           <div class="board-column"><h2>to do</h2>      <div class="board-column-text-board"></div></div>
-           <div class="board-column"><h2>in Progress</h2><div class="board-column-text-board"></div></div>
-           <div class="board-column"><h2>Testing </h2>   <div class="board-column-text-board"></div></div>
-           <div class="board-column"><h2>Done  </h2>     <div class="board-column-text-board"></div></div>
+           <div class="board-column"><h2>to do</h2>      <div id="todo" class="board-column-text-board">
+
+            <div class="board-entry "><div class="management">
+                <span class="board-date">01.02.2021</span>
+                <h3>Title</h3>
+            <p class="board-text-short">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel cupiditate delectus quo odit nostrum quidem, architecto voluptate harum odio. Exercitationem dicta est, amet blanditiis nulla consequuntur aperiam. In, eum deserunt!1</p>
+            <div class="d-flex justify-content-around"><div class="category">Management</div><img class="avatar" src="" alt="creator"> </div>
+
+        </div>
+           </div>
+        
+    </div>
+        </div>
+           <div class="board-column"><h2>in Progress</h2><div id="progress" class="board-column-text-board"></div></div>
+           <div class="board-column"><h2>Testing </h2>   <div id="testing" class="board-column-text-board"></div></div>
+           <div class="board-column"><h2>Done  </h2>     <div id="done" class="board-column-text-board"></div></div>
+    </div>
+
+    <div>
+        Title
+
     </div>
 </body>
 </html>
