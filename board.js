@@ -6,6 +6,7 @@ allTasks =[
         description : "lorem Ipsum dolor sit amet, consectetur",
         status: "todo",
         creator: "Timm Eichholz",
+        avatar: "./img/profile.png",
         creationdate: ""
     }
 ];
