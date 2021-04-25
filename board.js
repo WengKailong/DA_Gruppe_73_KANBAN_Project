@@ -68,6 +68,11 @@ function fillModal(id){
 dropId = idNr;
   }
   
+  /**
+   * 
+   * @param {*} ev 
+   * @param {*} dropCategory 
+   */
   function drop(ev, dropCategory) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
