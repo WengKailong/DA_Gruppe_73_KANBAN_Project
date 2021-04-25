@@ -1,3 +1,5 @@
+let dropId;
+
 allTasks =[
     {
         id : 0,
@@ -22,7 +24,7 @@ allTasks =[
 ];
 
 function writeTasks(id){
-    document.getElementById(allTasks[id]['status']).innerHTML += `<div class="board-entry" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillModal(${id})">
+    document.getElementById(allTasks[id]['status']).innerHTML += `<div id="id${allTasks[id]['id']}" class="board-entry" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillModal(${id}) " draggable="true" ondragstart="drag(event, ${id} )">
     <div class="${allTasks[id]['category']}">
         <span class="board-date">${allTasks[id]['creationdata']}</span>
         <h3>${allTasks[id]['title']}</h3>
@@ -52,6 +54,26 @@ function fillModal(id){
     document.getElementById('modal-creator').innerHTML = allTasks[id]['creator'];
     document.getElementById('modal-category').innerHTML = allTasks[id]['category'];
     document.getElementById('modal-category').classList.add(allTasks[id]['category'])
-
-
 }
+
+/**
+ * Drag and Drop
+ */
+ function allowDrop(ev) {
+    ev.preventDefault();
+  }
+  
+  function drag(ev, idNr) {
+    ev.dataTransfer.setData("text", ev.target.id);
+dropId = idNr;
+  }
+  
+  function drop(ev, dropCategory) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+    console.log('dropid: ', dropId);
+    console.log('dropStatus: ', dropCategory);
+    console.log(allTasks[dropId]['status']);
+    allTasks[dropId]['status'] = dropCategory;
+  }

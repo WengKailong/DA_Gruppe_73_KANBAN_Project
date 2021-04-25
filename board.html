@@ -26,9 +26,9 @@
     <div class="board-main-body">
         <div class="board-column">
             <h2>to do</h2>
-            <div id="todo" class="board-column-text-board">
-testing entry for board
-                <div class="board-entry " data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillModal(0)">
+            <div id="todo" class="board-column-text-board" ondrop="drop(event, 'todo')" ondragover="allowDrop(event)">
+<!--testing entry for board
+                <div id="entryTest" class="board-entry " data-bs-toggle="modal" data-bs-target="#exampleModal"  onclick="fillModal(0)" draggable="true" ondragstart="drag(event)">
                     <div class="management">
                         <span class="board-date" >01.02.2021</span>
                         <h3>Title</h3>
@@ -42,20 +42,20 @@ testing entry for board
 
                     </div>
                 </div>
-
+-->
             </div>
         </div>
         <div class="board-column">
             <h2>in Progress</h2>
-            <div id="progress" class="board-column-text-board"></div>
+            <div id="progress" class="board-column-text-board" ondrop="drop(event, 'progress')" ondragover="allowDrop(event)"></div>
         </div>
         <div class="board-column">
             <h2>Testing </h2>
-            <div id="testing" class="board-column-text-board"></div>
+            <div id="testing" class="board-column-text-board" ondrop="drop(event, 'testing')" ondragover="allowDrop(event)" ></div>
         </div>
         <div class="board-column">
             <h2>Done </h2>
-            <div id="done" class="board-column-text-board"></div>
+            <div id="done" class="board-column-text-board" ondrop="drop(event, 'done')" ondragover="allowDrop(event)"></div>
         </div>
     </div>
 <!--Modal Structure-->
