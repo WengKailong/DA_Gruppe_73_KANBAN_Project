@@ -1,5 +1,5 @@
 /**
- * 
+ * @param {Array} allTasks this Array is used to store all saved tasks
  */
 let allTasks = [];
 
