@@ -1,0 +1,41 @@
+.fixed-left {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    bottom: 0 !important;
+    right: auto;
+    width: 200px;
+    flex-flow: column nowrap !important;
+    align-items: flex-start;
+  }
+
+  .navbar-collapse {
+    align-items: flex-start !important;
+  }
+
+  .nav-item {
+    color: #bec0ce !important;
+    padding-left: 2.5rem !important;
+  }
+  
+  .navbar-logo {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+
+  .active {
+    color: white !important;
+    border-left: 10px solid;
+  }
+
+  
+.navbar-profile-container{
+    margin-bottom: 30px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid white;
+}
+
+  

@@ -1,0 +1,23 @@
+{
+  "name": "da_gruppe_73_kanban_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "bootstrap": "^4.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WengKailong/DA_Gruppe_73_KANBAN_Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WengKailong/DA_Gruppe_73_KANBAN_Project/issues"
+  },
+  "homepage": "https://github.com/WengKailong/DA_Gruppe_73_KANBAN_Project#readme"
+}
