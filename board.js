@@ -1,29 +1,34 @@
 let dropId;
-
-allTasks =[
+/**
+ * Tasks for Testing
+ */
+allTasks = [
     {
-        id : 0,
-        title : "test",
-        category : "Management",
-        description : `lorem Ipsum dolor sit amet, consectetur`,
+        id: 0,
+        title: "test",
+        category: "Management",
+        description: `lorem Ipsum dolor sit amet, consectetur`,
         status: "todo",
         creator: "Timm Eichholz",
         avatar: "./img/profile.png",
         creationdate: ""
     },
     {
-        id : 1,
-        title : "test2",
-        category : "Management",
-        description : "lorem Ipsum dolor sit amet, consectetur",
+        id: 1,
+        title: "test2",
+        category: "Management",
+        description: "lorem Ipsum dolor sit amet, consectetur",
         status: "done",
         creator: "Timm Eichholz",
         avatar: "./img/profile.png",
         creationdate: ""
     }
 ];
-
-function writeTasks(id){
+/**
+ * loads the tasks into the different columns
+ * @param {allTasks object} id 
+ */
+function writeTasks(id) {
     document.getElementById(allTasks[id]['status']).innerHTML += `<div id="id${allTasks[id]['id']}" class="board-entry" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillModal(${id}) " draggable="true" ondragstart="drag(event, ${id} )">
     <div class="${allTasks[id]['category']}">
         <span class="board-date">${allTasks[id]['creationdata']}</span>
@@ -38,18 +43,26 @@ function writeTasks(id){
 
 }
 
-function boardInit(){
-    
-    for (let i = 0; i < allTasks.length; i++){
-        console.log(i);
+/**
+ * 
+ */
+function boardInit() {
+
+    for (let i = 0; i < allTasks.length; i++) {
+
         writeTasks(i);
     }
 }
 
-function fillModal(id){
+
+/**
+ * fills the Modal after it is opened
+ * @param {allTasks object} id 
+ */
+function fillModal(id) {
     document.getElementById('modal-title').innerHTML = allTasks[id]['title'];
     document.getElementById('modal-description').innerHTML = allTasks[id]['description'];
-    let modalAvatar =  document.getElementById('modal-avatar');
+    let modalAvatar = document.getElementById('modal-avatar');
     modalAvatar.src = allTasks[id]['avatar'];
     document.getElementById('modal-creator').innerHTML = allTasks[id]['creator'];
     document.getElementById('modal-category').innerHTML = allTasks[id]['category'];
@@ -59,21 +72,22 @@ function fillModal(id){
 /**
  * Drag and Drop
  */
- function allowDrop(ev) {
+function allowDrop(ev) {
     ev.preventDefault();
-  }
-  
-  function drag(ev, idNr) {
+}
+
+function drag(ev, idNr) {
     ev.dataTransfer.setData("text", ev.target.id);
-dropId = idNr;
-  }
-  
-  /**
-   * 
-   * @param {*} ev 
-   * @param {*} dropCategory 
-   */
-  function drop(ev, dropCategory) {
+    dropId = idNr;
+}
+
+/**
+ * 
+ * @param {dragged object} ev 
+ * @param {} dropCategory 
+ * changes allTasks[].status into new category
+ */
+function drop(ev, dropCategory) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
@@ -81,4 +95,4 @@ dropId = idNr;
     console.log('dropStatus: ', dropCategory);
     console.log(allTasks[dropId]['status']);
     allTasks[dropId]['status'] = dropCategory;
-  }
+}
