@@ -1,6 +1,4 @@
-body {
-  font-family: "PT Sans", sans-serif !important;
-}
+
 
 .wrapper {
   display: flex;
@@ -12,9 +10,7 @@ body {
   flex-flow: column nowrap !important;
 }
 
-.bg-sidebar {
-  background-color: #1e3190;
-}
+
 
 .font-bold {
   font-weight: 700;
@@ -24,25 +20,7 @@ body {
   color: #4656a4;
 }
 
-.width-100 {
-  width: 100%;
-}
 
-.height-100 {
-  height: 100%;
-}
-
-.display-flex {
-  display: flex;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.align-center {
-  align-items: center;
-}
 
 .wrapper-pagecontent {
   width: 80%;

@@ -13,6 +13,10 @@
     align-items: flex-start !important;
   }
 
+  .bg-sidebar {
+    background-color: #1e3190;
+  }
+
   .nav-item {
     color: #bec0ce !important;
     padding-left: 2.5rem !important;
