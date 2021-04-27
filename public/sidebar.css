@@ -28,10 +28,7 @@
   }
 
 
-  .active {
-    color: white !important;
-    border-left: 10px solid;
-  }
+  
 
   
 .navbar-profile-container{
@@ -62,15 +59,14 @@
   padding-left: 2.5rem !important;
 }
 
+.active-nav-item {
+  color: white !important;
+  border-left: 10px solid;
+}
+
 .navbar-logo {
   margin-top: 50px;
   margin-bottom: 50px;
-}
-
-
-.active {
-  color: white !important;
-  border-left: 10px solid;
 }
 
 
