@@ -8,4 +8,16 @@ class User{
     constructor(){
 
     }
+
+    addNewUser(){
+
+    }
+
+    deleteUser(){
+
+    }
+
+    changeUserRights(){
+        
+    }
 }

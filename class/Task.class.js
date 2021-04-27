@@ -26,4 +26,12 @@ class Task{
 
     }
 
+    addTask(){
+
+    }
+
+    deleteTask(){
+        
+    }
+
 }
