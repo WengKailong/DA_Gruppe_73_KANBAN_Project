@@ -1,3 +1,8 @@
+/**
+ * this includeHTML() function is used to include the public/sidebar.html for different pages of the website.
+ * @returns 
+ */
+
 function includeHTML() {
     var z, i, elmnt, file, xhttp;
     /* Loop through a collection of all HTML elements: */
