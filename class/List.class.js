@@ -1,7 +1,7 @@
 class List{
     listId;
     listTitle;
-    board;
+    boardId;
     activeTasks = [];   // Array of task objects, which belong to this list
 
     constructor(){
@@ -13,6 +13,7 @@ class List{
     }
 
     deleteList(){
+        
         
     }
 }
