@@ -30,12 +30,6 @@
     <!--required for Jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-
-    <!--File needed for datepicker downloaded-->
-    <link rel="stylesheet" href="lib/dateTimePicker/jquery.datetimepicker.min.css" />
-    <script src="lib/dateTimePicker/jquery.datetimepicker.full.min.js"></script>
-    <script src="lib/dateTimePicker/datePicker.js"></script>
-
     <!-- required for public sidebar  -->
     <script src="public/sidebar.js"></script>
     <link rel="stylesheet" href="public/sidebar.css" />
@@ -47,11 +41,19 @@
       rel="stylesheet"
     />
 
+    <!-- object classes required for this page-->
+    <script src="class/User.class.js"></script>
+    <script src="class/Task.class.js"></script>
+
     <!-- style and function required by each page -->
     <link rel="stylesheet" href="addTask.css" />
+
+    <!-- js function required for this page-->
+    <script src="mini_backend.js"></script>
     <script src="addTask.js"></script>
+
   </head>
-  <body>
+  <body onload="init()">
     <div class="wrapper">
       <!-- navbar left -->
       <div w3-include-html="public/sidebar.html" style="width: 200px"></div>
@@ -70,54 +72,49 @@
           <!-- Input window of adding a new task-->
           <div class="container-fluid mt-5">
             <div class="container-fluid bg-form-input p-4">
-              <form>
+              <form onsubmit="createNewTask(event)" id="input-task">
                 <div class="row">
                   <div class="col-sm">
                     <div class="form-group mt-3">
-                      <label
-                        for="exampleInputEmail1"
-                        class="form-label-text mb-2"
+                      <label for="input-task-title" class="form-label-text mb-2"
                         >TITLE</label
                       >
                       <input
+                        name="taskTitle"
                         type="text"
                         class="form-control"
-                        id="exampleInputEmail1"
+                        id="input-task-title"
                         aria-describedby="emailHelp"
-                        placeholder="Enter email"
+                        placeholder="Enter task title"
                       />
                       <!-- <small id="emailHelp" class="form-text text-muted"
                           >We'll never share your email with anyone else.</small
                         > -->
                     </div>
                     <div class="form-group mt-3">
-                      <label
-                        for="exampleInputEmail1"
-                        class="form-label-text mb-2"
+                      <label for="input-task-category" class="form-label-text mb-2"
                         >CATEGORY</label
                       >
                       <select
+                        name="taskCategory"
                         class="form-select"
+                        id="input-task-category"
                         aria-label="Default select example"
                       >
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option value = "" selected>Please select category of this task</option>
                       </select>
                       <!-- <small id="emailHelp" class="form-text text-muted"
                           >We'll never share your email with anyone else.</small
                         > -->
                     </div>
                     <div class="form-group mt-3">
-                      <label
-                        for="exampleInputEmail1"
-                        class="form-label-text mb-2"
+                      <label for="input-task-description" class="form-label-text mb-2"
                         >DESCRIPTION</label
                       >
                       <textarea
+                        name="taskDescription"
                         class="form-control"
-                        id="exampleFormControlTextarea1"
+                        id="input-task-description"
                         rows="5"
                       ></textarea>
                       <!-- <small id="emailHelp" class="form-text text-muted"
@@ -127,91 +124,100 @@
                   </div>
                   <div class="col-sm">
                     <div class="form-group mt-3">
-                      <label
-                        for="exampleInputEmail1"
-                        class="form-label-text mb-2"
+                      <label for="input-task-duedate" class="form-label-text mb-2"
                         >DUE DATE</label
                       >
-                      <div class="input-group">
-                        <input type="text" id="date-picker" class="form-control" />
-                        <div class="input-group-prepend">
-                          <button
-                            type="button"
-                            id="date-toggle"
-                            class="input-group-text"
-                            style="height: 100%"
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              fill="currentColor"
-                              class="bi bi-calendar3"
-                              viewBox="0 0 16 16"
-                            >
-                              <path
-                                d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"
-                              />
-                              <path
-                                d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
-                              />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                      <!-- <small id="emailHelp" class="form-text text-muted"
-                        >We'll never share your email with anyone else.</small
-                      > -->
+                      <input
+                        type="date"
+                        name="taskDueDate"
+                        class="form-control"
+                        id="input-task-duedate"
+                      />
+                     
                     </div>
                     <div class="form-group mt-3">
-                      <label
-                        for="exampleInputEmail1"
-                        class="form-label-text mb-2"
+                      <label for="input-task-urgency" class="form-label-text mb-2"
                         >URGENCY</label
                       >
                       <select
+                        name="taskUrgency"
                         class="form-select"
+                        id="input-task-urgency"
                         aria-label="Default select example"
                       >
                         <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option value="0">Low</option>
+                        <option value="1">Normal</option>
+                        <option value="2">High</option>
                       </select>
                       <!-- <small id="emailHelp" class="form-text text-muted"
                           >We'll never share your email with anyone else.</small
                         > -->
                     </div>
                     <div class="form-group mt-3">
-                      <label
-                        for="exampleInputEmail1"
-                        class="form-label-text mb-2"
+                      <label for="exampleInputEmail1" class="form-label-text mb-2"
                         >ASIGNED TO</label
                       >
-                      <div
-                        class="container mt-5 mb-5 display-flex align-center"
-                      >
-                        <div class="">
-                          <div class="form-profile-container mr-30">
-                            <img src="img/profile.png" alt="" class="h-100" />
-                          </div>
+                      <div class="container mt-3 mb-3 align-items-center row">
+                        <div class="w-auto d-flex" id="asigned-users">
+                          <!-- <div class=" d-flex flex-column align-items-center" style="width: 70px;">
+                            <div class="form-profile-container mr-30">
+                              <img src="profile.png" alt="" class="h-100" />
+                            </div>
+                            <span>admin</span>
+                          </div> -->
                         </div>
-                        <div
-                          class="asign-task-to-new-user display-flex justify-center align-center"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            fill="currentColor"
-                            class="bi bi-plus"
-                            viewBox="0 0 16 16"
-                            style="color: #3e457a"
+      
+                        <div class="justify-content-center" style="width: 60px">
+                          <div
+                            class="asign-task-to-new-user d-flex justify-content-center align-items-center"
                           >
-                            <path
-                              d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
-                            />
-                          </svg>
+                            <div class="dropdown">
+                              <button
+                                class="btn-white dropdown-toggle-btn"
+                                type="button"
+                                id="dropdownMenuButton"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="16"
+                                  height="16"
+                                  fill="currentColor"
+                                  class="bi bi-plus"
+                                  viewBox="0 0 16 16"
+                                  style="color: #3e457a"
+                                >
+                                  <path
+                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                                  />
+                                </svg>
+                              </button>
+                              <div
+                                class="dropdown-menu scrollable-menu"
+                                id="input-task-asignto"
+                                aria-labelledby="dropdownMenuButton"
+                              >
+                                <!-- <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  onclick="asignTaskTo(0)"
+                                  ><div class="row" style="height: 30px">
+                                    <div class="col-4 h-100">
+                                      <img
+                                        class="h-100 rounded-circle"
+                                        src="profile.png"
+                                        alt=""
+                                      />
+                                    </div>
+                                    <div class="col-8 h-100">admin</div>
+                                  </div></a
+                                > -->
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <!-- <small id="emailHelp" class="form-text text-muted"
@@ -220,7 +226,7 @@
                     </div>
                     <div class="form-group mt-3 float-end">
                       <button
-                        type="submit"
+                        type="reset"
                         class="btn btn-primary btn-lg font-bold bg-purple h-100 mr-30"
                       >
                         CANCEL
@@ -242,8 +248,14 @@
     </div>
     <script>
       includeHTML();
-      setDatePicker();
       navItemActive('nav-btn-addTask');
+
+      $(".dropdown-toggle-btn").on("click", function () {
+        $(this)
+          .closest(".dropdown")
+          .children(".dropdown-menu")
+          .toggleClass("show");
+      });
     </script>
     
   </body>

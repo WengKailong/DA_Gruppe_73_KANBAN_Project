@@ -1,19 +1,14 @@
-class List{
+/**
+ * this class is designed to define list object. default lists are "todo", "on going", "done"
+ */
+
+ class List{
     listId;
-    listTitle;
-    boardId;
-    activeTasks = [];   // Array of task objects, which belong to this list
+    listName;
 
-    constructor(){
-
+    constructor(id, name){
+        this.listId = id;
+        this.listName = name;
     }
 
-    addNewList(){
-
-    }
-
-    deleteList(){
-        
-        
-    }
 }

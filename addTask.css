@@ -38,13 +38,6 @@
   color: #444882;
 }
 
-.form-profile-container {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
 .mr-30 {
   margin-right: 30px;
 }
@@ -54,14 +47,40 @@
   border: none;
 }
 
+.btn-lg{
+    font-size: 1rem;
+}
+
+
+.dropdown-menu {
+  width: 100%;
+}
+
+.scrollable-menu {
+  height: auto;
+  max-width: 200px;
+  max-height: 200px;
+  overflow-x: hidden;
+}
+
+.btn-white {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.form-profile-container {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
 .asign-task-to-new-user {
   height: 40px;
   width: 40px;
   border-radius: 50%;
   background-color: #d8dad6;
   cursor: pointer;
-}
-
-.btn-lg{
-    font-size: 1rem;
 }

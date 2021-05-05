@@ -1,30 +1,46 @@
 class User{
-    userID;
+    userId;
     userName;
     userPassword;   // to be decided
-    userRoll;
-    userRight;
+    userCategory;
     userEmail;
-    userProfilePic;
-    boards = ['todo', 'on going', 'done']; // Array to store all active boards of this user
+    userProfileAvatar;
 
-    constructor(){
-
-    }
-
-    addNewUser(){
-
-    }
-
-    deleteUser(){
+    constructor(id, name, password, category, email, avatar){
+        this.userId = id;
+        this.userName = name;
+        this.userPassword = password;
+        this.userCategory = category;
+        this.userEmail = email;
+        this.userProfileAvatar = 'img/profile.png';
 
     }
 
-    changeUserRights(){
 
-    }
+    dataFromInput(formData){
+        this.userName = formData.get('userName');
+        this.userPassword = formData.get('userPassword');
+        this.userCategory = formData.get('userCategory');
+        this.userEmail = formData.get('userEmail');
 
-    newFunction(){
+        if(formData.get('userAvatar').name != ''){
+            this.userProfileAvatar = 'img/' + formData.get('userAvatar').name;
+        }
         
+        console.log(this);
     }
+
+    getUserById(id){
+        for (let i = 0; i < userObjects.length; i++) {
+            let user = userObjects[i];
+
+            if(user.userId == id){
+                return user;
+            }
+            
+        }
+
+    }
+
+    
 }
