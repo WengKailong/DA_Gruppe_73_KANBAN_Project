@@ -48,12 +48,12 @@
     crossorigin="anonymous"></script>
 </head>
 
-<body onload="boardInit(), includeHTML(), navItemActive('nav-btn-board')">
+<body onload="boardInit(), includeHTML(), navItemActive('nav-btn-board'), loginActive()">
   <!-- navbar left -->
   <div w3-include-html="public/sidebar.html"></div>
 
   <!--board Structure-->
-  <div class="board-main-body">
+  <div class="board-main-body" id="board-body">
     <div class="board-column">
       <h2>to do</h2>
       <div id="todo" class="board-column-text-board" ondrop="drop(event, 'todo')" ondragover="allowDrop(event)">

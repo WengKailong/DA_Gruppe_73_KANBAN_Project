@@ -52,10 +52,10 @@ function boardInit() {
  * loads the tasks into the different columns
  * @param {} id allTasks object
  */
-    function writeTasks(id) {
-    
+function writeTasks(id) {
 
-        document.getElementById(taskObjects[id]['taskStatus']).innerHTML += `<div id="id${taskObjects[id]['taskId']}" class="board-entry" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillModal(${id}) " draggable="true" ondragstart="drag(event, ${id} )">
+
+    document.getElementById(taskObjects[id]['taskStatus']).innerHTML += `<div id="id${taskObjects[id]['taskId']}" class="board-entry" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillModal(${id}) " draggable="true" ondragstart="drag(event, ${id} )">
         <div class="${taskObjects[id]['taskCategory']}">
             <span class="board-date">${taskObjects[id]['taskDueDate']}</span>
             <h4>${taskObjects[id]['taskTitle']}</h4>
@@ -66,7 +66,7 @@ function boardInit() {
             </div>
         </div>
     </div>`
-    }
+}
 /**
  * taskId;
     taskTitle;
@@ -137,10 +137,53 @@ function drop(ev, dropCategory) {
     allTasks[dropId]['status'] = dropCategory;
 }
 
-function newBoardList(){
-   let newBoardListInput = document.getElementById('listInput');
-   listObjects.push(
-       new List(listObjects.length+1, newBoardListInput)
-   );
-   loadBoard();
+function newBoardList() {
+    let newBoardListInput = document.getElementById('listInput');
+    listObjects.push(
+        new List(listObjects.length + 1, newBoardListInput)
+    );
+    loadBoard();
+}
+
+function loadBoard() {
+    loadListsToBoard();
+ //   loadAllTasks();
+ //   loadTasksToBoard();
+}
+
+function loadListsToBoard() {
+    let loadElement = document.getElementById("board-body");
+    loadElement.innerHTML = '';
+
+    for (let i = 0; i < listObjects.length; i++) {
+        let list = listObjects[i];
+
+        loadElement.innerHTML += `<div class="board-column">
+          <h2>${list.listName}</h2>
+          <div
+            id="${list.listId}"
+            class="board-column-text-board"
+            ondrop="drop(event, '${list.listId}')"
+            ondragover="allowDrop(event)"
+          ></div>
+        </div>`;
+    }
+    loadElement.innerHTML += `<div>
+    <p style="flex-direction: column">
+
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+        aria-expanded="false" aria-controls="collapseExample">
+        Button with data-bs-target
+      </button>
+    </p>
+    <div class="collapse" id="collapseExample">
+      <form>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+          <input class="form-control" id="listInput" rows="3"></input>
+        </div>
+        <button type="submit" class="btn btn-primary" onsubmit="newBoardList()">new List</button>
+      </form>
+    </div>
+  </div>`
 }

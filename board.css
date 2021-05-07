@@ -31,7 +31,8 @@ h2{
 
 .board-column{
     
-    width: 17%;
+    min-width: 280px;
+    max-width: 280px;
     max-height: 80%;
     margin-left: 16px;
     margin-right: 16px;
@@ -42,6 +43,7 @@ h2{
     background-color: rgba(0, 0, 0, 0.1);
     height: 60vh;
     padding-top:16px;
+    overflow: hidden;
 }
 
 .avatar{

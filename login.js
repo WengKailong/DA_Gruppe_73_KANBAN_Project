@@ -31,7 +31,7 @@ function setUserCookie() {
 
 function checkLogin() {
   if (checkUserAndPassword() === true) {
-     window.open('./board.html', '_self');
+     window.open('/board.html', '_self');
   }
   else{
     alert('wrong Username or Password')

@@ -6,6 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add new task</title>
 
+    <!--required for back end data handling-->
+    <script src="./smallest_backend_ever-master/mini_backend.js"></script>
+ 
+  
+    <script src="main.js"></script>
+  
+    <script src="class/List.class.js"></script>
+   
+
     <!-- styles required by every page-->
     <link rel="stylesheet" href="main.css">
     <!-- required for bootstrap -->
@@ -49,11 +58,12 @@
     <link rel="stylesheet" href="addTask.css" />
 
     <!-- js function required for this page-->
-    <script src="mini_backend.js"></script>
+   <!-- <script src="mini_backend.js"></script>
+    -->
     <script src="addTask.js"></script>
 
   </head>
-  <body onload="init()">
+  <body onload="init(), loginActive()">
     <div class="wrapper">
       <!-- navbar left -->
       <div w3-include-html="public/sidebar.html" style="width: 200px"></div>

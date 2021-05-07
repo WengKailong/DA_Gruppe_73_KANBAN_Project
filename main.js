@@ -1,8 +1,13 @@
+userData = {
+  name: '',
+  password: ''
+}
+
 /**
  * 
  */
  setURL(
-    "http://gruppe-73.developerakademie.com/testBackEnd/smallest_backend_ever-master"
+  "http://gruppe-73.developerakademie.com/testBackEnd/smallest_backend_ever-master"
   );
 
 let userObjects = []; // Global variables to load all saved users from server
@@ -21,9 +26,11 @@ async function init() {
   taskObjects = JSON.parse(backend.getItem("taskObjects")) || [];         // used for addtask.html
   listObjects = JSON.parse(backend.getItem("listObjects")) || [];         // used for board.html
   GLOBAL_VARIABLES = JSON.parse(backend.getItem("globalVariables")) || {};// used for every sites
-  //loadBoard();          // interface to board.html
+  loadBoard();          // interface to board.html
   //loadAddTaskSite();    // interface to addTask.html
   //loadLogs();           // interface to BackLogs.html
+
+  
 }
 
 function deleteUser(name) {
@@ -67,11 +74,25 @@ async function saveToServer(objectName, object) {
     getCookie();
     for (let i = 0; i < userObjects.length; i++) {
       if (userObjects[i]['userName'] == userData.name && userObjects[i]['userPassword'] == userData.password) {
-        
+       
         return true;
       }
+      
     }
-    
     return false;
+    
   
   }
+
+async  function loginActive(){
+    await init();
+   // if ( checkUserAndPassword() === false){
+   //   alert('false')
+   //   window.open('/login.html', '_self');
+     ;
+     
+   // }
+      //
+  }
+    
+  
