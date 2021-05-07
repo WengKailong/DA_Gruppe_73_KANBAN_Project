@@ -31,22 +31,31 @@
  <!--Jquery-->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<!--required for back end data handling-->
+<script src="./smallest_backend_ever-master/mini_backend.js"></script>
 
+ <script src="main.js"></script>
   <script src="login.js"></script>
+
+<script src="class/Task.class.js"></script>
+  <script src="class/List.class.js"></script>
+  <script src="class/User.class.js"></script>
+
+
 
 
 </head>
 
-<body>
-  <!--
+<body onload="init()">
+<!--
   Body for sign in and register
 -->
   <div>
     
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <button class="nav-link active" id="nav-login-tab" data-bs-toggle="tab" data-bs-target="#nav-login" type="button" role="tab" aria-controls="nav-login" aria-selected="true">Log In</button>
-          <button class="nav-link" id="nav-signin-tab" data-bs-toggle="tab" data-bs-target="#nav-signin" type="button" role="tab" aria-controls="nav-signin" aria-selected="false">Sign in</button>
+          <button class="nav-link active" id="nav-login-tab" data-bs-toggle="tab" data-bs-target="#nav-login" type="button" role="tab" aria-controls="nav-login" aria-selected="true">Sign In</button>
+          <button class="nav-link" id="nav-register-tab" data-bs-toggle="tab" data-bs-target="#nav-register" type="button" role="tab" aria-controls="nav-register" aria-selected="false">Register</button>
           <!--  <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>-->
         </div>
       </nav>
@@ -76,17 +85,17 @@
               <input name="userPassword" type="password" class="form-control" id="input-login-password"
                 aria-describedby="emailHelp" placeholder="Enter password" />
             </div>
-            <button type="submit" class="btn-primary">Log in</button>
+            <button type="submit" class="btn-primary">Sign in</button>
           </form>
         </div>
       </div>
 
 
         </div>
-        <div class="tab-pane fade" id="nav-signin" role="tabpanel" aria-labelledby="nav-signin-tab">
+        <div class="tab-pane fade" id="nav-register" role="tabpanel" aria-labelledby="nav-register-tab">
         
 <!--
-  Body for Sign in
+  Body for registering
 -->
 <div class="container-fluid mt-5">
   <h1>CREATE NEW USER(NOT FINISH)</h1>

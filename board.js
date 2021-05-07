@@ -29,7 +29,7 @@ allTasks = [
 
 function boardInit() {
 
-    for (let i = 0; i < Task.length; i++) {
+    for (let i = 0; i < taskObjects.length; i++) {
 
         writeTasks(i);
     }
@@ -52,20 +52,21 @@ function boardInit() {
  * loads the tasks into the different columns
  * @param {} id allTasks object
  */
-function writeTasks(id) {
-    document.getElementById(allTasks[id]['status']).innerHTML += `<div id="id${allTasks[id]['taskId']}" class="board-entry" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillModal(${id}) " draggable="true" ondragstart="drag(event, ${id} )">
-    <div class="${allTasks[id]['taskCategory']}">
-        <span class="board-date">${allTasks[id]['taskDueDate']}</span>
-        <h4>${allTasks[id]['taskTitle']}</h4>
-        <p class="board-text-short">${allTasks[id]['taskDescription']}</p>
-        <div class="d-flex justify-content-around">
-            <div class="category">Management</div><img class="avatar" src=""
-                alt=${allTasks[id]['taskAsignedTo'][0]}>
-        </div>
-    </div>
-</div>`
+    function writeTasks(id) {
+    
 
-}
+        document.getElementById(taskObjects[id]['taskStatus']).innerHTML += `<div id="id${taskObjects[id]['taskId']}" class="board-entry" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillModal(${id}) " draggable="true" ondragstart="drag(event, ${id} )">
+        <div class="${taskObjects[id]['taskCategory']}">
+            <span class="board-date">${taskObjects[id]['taskDueDate']}</span>
+            <h4>${taskObjects[id]['taskTitle']}</h4>
+            <p class="board-text-short">${taskObjects[id]['taskDescription']}</p>
+            <div class="d-flex justify-content-around">
+                <div class="category">Management</div><img class="avatar" src=""
+                    alt=${taskObjects[id]['taskAsignedTo'][0]}>
+            </div>
+        </div>
+    </div>`
+    }
 /**
  * taskId;
     taskTitle;
