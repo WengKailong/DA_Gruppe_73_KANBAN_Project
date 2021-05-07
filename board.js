@@ -1,7 +1,7 @@
 let dropId;
 /**
  * Tasks for Testing
- */
+
 allTasks = [
     {
         id: 0,
@@ -24,31 +24,12 @@ allTasks = [
         creationdate: ""
     }
 ];
-/**
- * loads the tasks into the different columns
- * @param {allTasks object} id 
  */
-function writeTasks(id) {
-    document.getElementById(allTasks[id]['status']).innerHTML += `<div id="id${allTasks[id]['id']}" class="board-entry" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillModal(${id}) " draggable="true" ondragstart="drag(event, ${id} )">
-    <div class="${allTasks[id]['category']}">
-        <span class="board-date">${allTasks[id]['creationdata']}</span>
-        <h3>${allTasks[id]['title']}</h3>
-        <p class="board-text-short">${allTasks[id]['description']}</p>
-        <div class="d-flex justify-content-around">
-            <div class="category">Management</div><img class="avatar" src=${allTasks[id]['avatar']}
-                alt=${allTasks[id]['creator']}>
-        </div>
-    </div>
-</div>`
 
-}
 
-/**
- * 
- */
 function boardInit() {
 
-    for (let i = 0; i < allTasks.length; i++) {
+    for (let i = 0; i < Task.length; i++) {
 
         writeTasks(i);
     }
@@ -56,8 +37,66 @@ function boardInit() {
 
 
 /**
+ * class Task{
+    taskId;
+    taskTitle;
+    taskCategory;
+    taskDescription;
+    taskDueDate;
+    taskUrgency;
+    taskAsignedTo = [];
+    listId = 0;
+    createdBy = 'admin';
+    lastUpDate;
+ * 
+ * loads the tasks into the different columns
+ * @param {} id allTasks object
+ */
+function writeTasks(id) {
+    document.getElementById(allTasks[id]['status']).innerHTML += `<div id="id${allTasks[id]['taskId']}" class="board-entry" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillModal(${id}) " draggable="true" ondragstart="drag(event, ${id} )">
+    <div class="${allTasks[id]['taskCategory']}">
+        <span class="board-date">${allTasks[id]['taskDueDate']}</span>
+        <h4>${allTasks[id]['taskTitle']}</h4>
+        <p class="board-text-short">${allTasks[id]['taskDescription']}</p>
+        <div class="d-flex justify-content-around">
+            <div class="category">Management</div><img class="avatar" src=""
+                alt=${allTasks[id]['taskAsignedTo'][0]}>
+        </div>
+    </div>
+</div>`
+
+}
+/**
+ * taskId;
+    taskTitle;
+    taskCategory;
+    taskDescription;
+    taskDueDate;
+    taskUrgency;
+    taskAsignedTo = [];
+    listId = 0;
+    createdBy = 'admin';
+    lastUpDate;
+ */
+
+
+/**
+ * 
+
+function boardInit() {
+
+    for (let i = 0; i < allTasks.length; i++) {
+
+        writeTasks(i);
+    }
+}
+ */
+
+
+
+/**
  * fills the Modal after it is opened
- * @param {allTasks object} id 
+ * @param {Object} id allTasks object
  */
 function fillModal(id) {
     document.getElementById('modal-title').innerHTML = allTasks[id]['title'];
@@ -83,8 +122,8 @@ function drag(ev, idNr) {
 
 /**
  * 
- * @param {dragged object} ev 
- * @param {} dropCategory 
+ * @param {Object} ev dragged object
+ * @param {Number} dropCategory 
  * changes allTasks[].status into new category
  */
 function drop(ev, dropCategory) {
@@ -95,4 +134,12 @@ function drop(ev, dropCategory) {
     console.log('dropStatus: ', dropCategory);
     console.log(allTasks[dropId]['status']);
     allTasks[dropId]['status'] = dropCategory;
+}
+
+function newBoardList(){
+   let newBoardListInput = document.getElementById('listInput');
+   listObjects.push(
+       new List(listObjects.length+1, newBoardListInput)
+   );
+   loadBoard();
 }
