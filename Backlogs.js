@@ -50,20 +50,28 @@ function loadLogElement(newLog) {
    */
   let loadElement = document.getElementById("load-logs");
 
-  loadElement.innerHTML += `<div class="container-fluid row mb-3" style="height: 50px">
-        <div class="col-2 align-content-center h-100">
+  
+
+  
+
+
+      loadElement.innerHTML += `<div class="container-fluid row mb-2 p-zero  bg-form-input" style="height: 70px">
+      
+        <div class="vl col-1 align-content-center height-100">
           <img
-            class="h-100 d-inline-block rounded-circle"
+            class=" h-50  d-inline-block rounded-circle"
             src="${newLog.userAvatar}"
             alt=""
           />
         </div>
-        <div class="col-3 h-100">
-          <div class="row">${newLog.userName}</div>
-          <div class="row">${newLog.userEmail}</div>
-        </div>
-        <div class="col-3 h-100">${newLog.logCategory}</div>
+        
+        <div class="col-3 h-100 align-txt">
+        <div class="raw h-100 align-txt h-25">${newLog.userName}</div>
+
+        <div class="raw h-100 align-txt h-25" ><a href="${newLog.userEmail}">${newLog.userEmail}</a></div></div>
+
+        <div class="col-3 h-100 align-txt">${newLog.logCategory}</div>
     
-        <div class="col-4 h-100">${newLog.logDetails}</div>
+        <div class="col-4 h-100 align-txt">${newLog.logDetails}</div>
       </div>`;
 }
