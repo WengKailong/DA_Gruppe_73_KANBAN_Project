@@ -23,17 +23,19 @@ function dataFromLogin(formData) {
 
 }
 function setUserCookie() {
-  document.cookie = "user=" + loginUser.userName + "," + loginUser.userPassword + "; path=/";
+  document.cookie = "user=" + loginUser.userName +  "; path=/";
 
 }
+
+//
 
 
 
 function checkLogin() {
   if (checkUserAndPassword() === true) {
-     window.open('/board.html', '_self');
+    window.open('/board.html', '_self');
   }
-  else{
+  else {
     alert('wrong Username or Password')
   }
 }
@@ -54,11 +56,28 @@ function createNewUser(e) {
   let newUser = new User(GLOBAL_VARIABLES.currUserId);
   newUser.dataFromInput(formData);
 
-  // add new task to existing tasks
-  userObjects.push(newUser);
-  GLOBAL_VARIABLES.currUserId++;
+  if (checkForDouble(userObjects, 'userName', newUser.userName) === true || checkForDouble(userObjects, 'userEmail', newUser.userEmail) === true){
+    alert('Der Username oder die Emailadresse wird bereits verwendet')
 
-  // update data on server
-  saveToServer("userObjects", userObjects);
-  saveToServer("globalVariables", GLOBAL_VARIABLES);
+  }else{
+    userObjects.push(newUser);
+    GLOBAL_VARIABLES.currUserId++;
+  
+    // update data on server
+    saveToServer("userObjects", userObjects);
+    saveToServer("globalVariables", GLOBAL_VARIABLES);
+  }
+
+  
+  // add new task to existing tasks
+  
 }
+
+function checkForDouble(array, reference, searchcriteria) {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i][reference] == searchcriteria) {
+      return true;
+    }
+  }
+}
+
