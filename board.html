@@ -1,68 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="board.js"></script>
 
-    <link rel="stylesheet" href="main.css" />
-    <link rel="stylesheet" href="board.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ 
+    <!--required for back end data handling-->
+<script src="./smallest_backend_ever-master/mini_backend.js"></script>
+ 
+  
+  <script src="main.js"></script>
+  <script src="class/Task.class.js"></script>
+  <script src="class/List.class.js"></script>
+  <script src="class/User.class.js"></script>
 
-    <title>Board</title>
+  <script src="board.js"></script>
 
-    <!-- styles required by every pages-->
-    <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="board.css" />
 
-    <!-- required for bootstrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
-      crossorigin="anonymous"
-    />
 
-    <!-- required for public sidebar  -->
-    <script src="public/sidebar.js"></script>
-    <link rel="stylesheet" href="public/sidebar.css" />
 
-    <!-- fonts: PT Sens regular and PT Sens bold -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+  <title>Board</title>
 
-    <!-- CSS only -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
-      crossorigin="anonymous"
-    />
-    <!-- JavaScript Bundle with Popper -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-      crossorigin="anonymous"
-    ></script>
-  </head>
+  <!-- styles required by every pages-->
+  <link rel="stylesheet" href="main.css" />
 
-  <body onload="boardInit(), includeHTML(), navItemActive('nav-btn-board')">
-    <!-- navbar left -->
-    <div w3-include-html="public/sidebar.html"></div>
+  <!-- required for bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
 
-    <!--board Structure-->
-    <div class="board-main-body">
-      <div class="board-column">
-        <h2>to do</h2>
-        <div
-          id="todo"
-          class="board-column-text-board"
-          ondrop="drop(event, 'todo')"
-          ondragover="allowDrop(event)"
-        >
-          <!--testing entry for board
+  <!-- required for public sidebar  -->
+  <script src="public/sidebar.js"></script>
+  <link rel="stylesheet" href="public/sidebar.css" />
+
+  <!-- fonts: PT Sens regular and PT Sens bold -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+    crossorigin="anonymous"></script>
+</head>
+
+<body onload="boardInit(), includeHTML(), navItemActive('nav-btn-board'), loginActive()">
+  <!-- navbar left -->
+  <div w3-include-html="public/sidebar.html"></div>
+
+  <!--board Structure-->
+  <div class="board-main-body" id="board-body">
+    <div class="board-column">
+      <h2>to do</h2>
+      <div id="todo" class="board-column-text-board" ondrop="drop(event, 'todo')" ondragover="allowDrop(event)">
+        <!--testing entry for board
                 <div id="entryTest" class="board-entry " data-bs-toggle="modal" data-bs-target="#exampleModal"  onclick="fillModal(0)" draggable="true" ondragstart="drag(event)">
                     <div class="management">
                         <span class="board-date" >01.02.2021</span>
@@ -78,88 +73,75 @@
                     </div>
                 </div>
 -->
-        </div>
-      </div>
-      <div class="board-column">
-        <h2>in Progress</h2>
-        <div
-          id="progress"
-          class="board-column-text-board"
-          ondrop="drop(event, 'progress')"
-          ondragover="allowDrop(event)"
-        ></div>
-      </div>
-      <div class="board-column">
-        <h2>Testing</h2>
-        <div
-          id="testing"
-          class="board-column-text-board"
-          ondrop="drop(event, 'testing')"
-          ondragover="allowDrop(event)"
-        ></div>
-      </div>
-      <div class="board-column">
-        <h2>Done</h2>
-        <div
-          id="done"
-          class="board-column-text-board"
-          ondrop="drop(event, 'done')"
-          ondragover="allowDrop(event)"
-        ></div>
       </div>
     </div>
-    <!--Modal Structure-->
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <span id="board-modal-date" class="board-date"></span>
-            <h5 class="modal-title" id="modal-title">Modal title</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <p id="modal-description">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-              modi nostrum magni beatae commodi omnis, quod officiis, eum natus
-              placeat, rem velit a optio nulla quaerat veniam. Sit, perferendis
-              impedit?
-            </p>
-          </div>
-          <div class="modal-footer">
-            <div id="board-modal-footer">
-              <img
-                id="modal-avatar"
-                class="avatar"
-                src="img/profile.png"
-                alt="creator"
-              />
-              <span id="modal-creator">Timm Eichholz</span>
-            </div>
-            <div id="modal-category" class="category">Management</div>
+    <div class="board-column">
+      <h2>in Progress</h2>
+      <div id="progress" class="board-column-text-board" ondrop="drop(event, 'progress')" ondragover="allowDrop(event)">
+      </div>
+    </div>
+    <div class="board-column">
+      <h2>Testing</h2>
+      <div id="testing" class="board-column-text-board" ondrop="drop(event, 'testing')" ondragover="allowDrop(event)">
+      </div>
+    </div>
+    <div class="board-column">
+      <h2>Done</h2>
+      <div id="done" class="board-column-text-board" ondrop="drop(event, 'done')" ondragover="allowDrop(event)"></div>
+    </div>
+    <div>
+      <p style="flex-direction: column">
 
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+          aria-expanded="false" aria-controls="collapseExample">
+          Button with data-bs-target
+        </button>
+      </p>
+      <div class="collapse" id="collapseExample">
+        <form>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+            <input class="form-control" id="listInput" rows="3"></input>
           </div>
+          <button type="submit" class="btn btn-primary" onsubmit="newBoardList()">new List</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!--Modal Structure-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span id="board-modal-date" class="board-date"></span>
+          <h5 class="modal-title" id="modal-title">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p id="modal-description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
+            modi nostrum magni beatae commodi omnis, quod officiis, eum natus
+            placeat, rem velit a optio nulla quaerat veniam. Sit, perferendis
+            impedit?
+          </p>
+        </div>
+        <div class="modal-footer">
+          <div id="board-modal-footer">
+            <img id="modal-avatar" class="avatar" src="img/profile.png" alt="creator" />
+            <span id="modal-creator">Timm Eichholz</span>
+          </div>
+          <div id="modal-category" class="category">Management</div>
+
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
