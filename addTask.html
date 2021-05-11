@@ -63,7 +63,7 @@
     <script src="addTask.js"></script>
 
   </head>
-  <body onload="init(), loginActive()">
+  <body onload="init(), loginActive(), loadAddTaskSite()">
     <div class="wrapper">
       <!-- navbar left -->
       <div w3-include-html="public/sidebar.html" style="width: 200px"></div>
@@ -257,15 +257,15 @@
       </div>
     </div>
     <script>
-      includeHTML();
+      
       navItemActive('nav-btn-addTask');
-
       $(".dropdown-toggle-btn").on("click", function () {
         $(this)
           .closest(".dropdown")
           .children(".dropdown-menu")
           .toggleClass("show");
       });
+     
     </script>
     
   </body>

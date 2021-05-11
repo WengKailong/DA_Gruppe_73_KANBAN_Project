@@ -12,6 +12,7 @@ setURL(
 
 let userObjects = []; // Global variables to load all saved users from server
 let taskObjects = []; // Global variables to load all saved tasks from server
+let categoryObjects = [];
 //let GLOBAL_VARIABLES; // Global variable to load all other relevant variables for different sites
 let GLOBAL_VARIABLES = {
   currUserId: 1,
@@ -29,7 +30,7 @@ async function init() {
   //loadBoard();          // interface to board.html
   //loadAddTaskSite();    // interface to addTask.html
   //loadLogs();           // interface to BackLogs.html
-
+  includeHTML();
 
 }
 
@@ -93,4 +94,8 @@ async function loginActive() {
     // }
     //
   }
+}
+
+async function saveToServer(objectName, object) {
+  await backend.setItem(objectName, JSON.stringify(object));
 }
