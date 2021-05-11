@@ -32,7 +32,7 @@ function loadBoard() {
 }
 
 async function boardInit() {
-    await init()
+    await init();
     for (let i = 0; i < taskObjects.length; i++) {
 
         writeTasks(i);

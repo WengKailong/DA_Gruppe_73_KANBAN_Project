@@ -22,6 +22,7 @@
     taskDueDate;
     taskUrgency;
     taskAsignedTo = [];
+    taskStatus = 'todo';
     listId = 0;
     createdBy = 'admin';
     lastUpDate;
