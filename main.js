@@ -87,8 +87,7 @@ function checkUserAndPassword() {
 async function loginActive() {
   await init();
   if (checkUserAndPassword() === false) {
-    //   alert('false')
-    window.open('/login.html', '_self');
+    window.open('/index.html', '_self');
 
     // }
     //

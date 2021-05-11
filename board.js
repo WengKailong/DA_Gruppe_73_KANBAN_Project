@@ -27,16 +27,18 @@ allTasks = [
  */
 function loadBoard() {
     loadListsToBoard();
- //   loadAllTasks();
- //   loadTasksToBoard();
+    loadAllTasks();
+   loadTasksToBoard();
 }
 
 async function boardInit() {
     await init()
-    for (let i = 0; i < taskObjects.length; i++) {
+setTimeout(function(){ for (let i = 0; i < taskObjects.length; i++) {
 
-        writeTasks(i);
-    }
+    writeTasks(i);
+}}, 200);
+
+     
 }
 
 
@@ -65,7 +67,7 @@ function writeTasks(id) {
             <h4>${taskObjects[id]['taskTitle']}</h4>
             <p class="board-text-short">${taskObjects[id]['taskDescription']}</p>
             <div class="d-flex justify-content-around">
-                <div class="category">${taskObjects[id]['taskCategory']}</div>
+                <div class="category">${categoryObjects[taskObjects[id]['taskCategory']]}</div>
                 <img class="avatar" src=""                   alt=${taskObjects[id]['taskAsignedTo'][0]}>
             </div>
         </div>
@@ -104,7 +106,7 @@ function boardInit() {
  * @param {Object} id allTasks object
  */
 function fillModal(id) {
-    document.getElementById('modal-title').innerHTML = taskObjects[id]['taskTitle'];
+    document.getElementById('modal-title').value = taskObjects[id]['taskTitle'];
     document.getElementById('modal-description').innerHTML = taskObjects[id]['taskDescription'];
     let modalAvatar = document.getElementById('modal-avatar');
     modalAvatar.src = taskObjects[id]['userProfileAvatar'];
@@ -113,6 +115,15 @@ function fillModal(id) {
    // document.getElementById('modal-category').classList.add(allTasks[id]['category'])
 }
 
+
+/**
+ * save the changes made in the Modal to the array and Server
+ */
+function saveChanges(){
+    let modalData = document.getElementById('boardModal');
+    formData = new FormData(modalData);
+
+}
 
 
 
@@ -141,8 +152,9 @@ function drop(ev, dropCategory) {
     ev.target.appendChild(document.getElementById(data));
     console.log('dropid: ', dropId);
     console.log('dropStatus: ', dropCategory);
-    console.log(allTasks[dropId]['status']);
-    allTasks[dropId]['status'] = dropCategory;
+    console.log(taskObjects[dropId]['staskStatus']);
+    taskObjects[dropId]['taskStatus'] = dropCategory;
+    saveToServer("taskObjects", taskObjects);
 }
 
 function newBoardList() {
