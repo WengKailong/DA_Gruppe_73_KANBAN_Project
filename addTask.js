@@ -4,6 +4,7 @@ let asignedUsers = [];
 
 function loadAddTaskSite() {
   setTimeout(() => {
+    navItemActive('nav-btn-addTask');
     loadCategorySelect(); // load categories from GLOBAL_VARIABLES
     loadAsignToUserSelect(); // load select users for task asign to
   }, 200);
