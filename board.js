@@ -61,17 +61,32 @@ setTimeout(function(){ for (let i = 0; i < taskObjects.length; i++) {
 function writeTasks(id) {
 
 
-    document.getElementById(taskObjects[id]['taskStatus']).innerHTML += `<div id="id${taskObjects[id]['taskId']}" class="board-entry" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillModal(${id}) " draggable="true" ondragstart="drag(event, ${id} )">
+    document.getElementById(taskObjects[id]['taskStatus']).innerHTML += taskPart1(id) + taskPart2(id) + taskPart3(id)
+    
+}
+    function taskPart1(){
+    return `<div id="id${taskObjects[id]['taskId']}" class="board-entry" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillModal(${id}) " draggable="true" ondragstart="drag(event, ${id} )">
         <div class="${taskObjects[id]['taskCategory']}">
             <span class="board-date">${taskObjects[id]['taskDueDate']}</span>
             <h4>${taskObjects[id]['taskTitle']}</h4>
             <p class="board-text-short">${taskObjects[id]['taskDescription']}</p>
             <div class="d-flex justify-content-around">
-                <div class="category">${categoryObjects[taskObjects[id]['taskCategory']]}</div>
-                <img class="avatar" src=""                   alt=${taskObjects[id]['taskAsignedTo'][0]}>
-            </div>
-        </div>
-    </div>`
+                <div class="category">${categoryObjects[taskObjects[id]['taskCategory']]}</div>          `
+}
+
+function taskPart2(id){
+    let assignedTo;
+    for (let i= 0; i <taskObjects[id]['taskAsignedTo'].length; i++){
+        assignedTo += `<img class="avatar" src=""                   alt=${taskObjects[id]['taskAsignedTo'][i]}></img>`
+    }
+    return assignedTo;
+}
+
+function taskPart3(id){
+    return `</div>
+    </div>
+</div>`
+
 }
 /**
  * taskId;

@@ -105,3 +105,8 @@ body {
     align-items: center;
     height: 100vh;
 }
+.cardcenter{
+min-width: 700px;
+border: solid 1px lightgrey;
+border-radius: 16px;
+}
