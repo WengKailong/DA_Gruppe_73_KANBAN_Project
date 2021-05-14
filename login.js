@@ -15,6 +15,7 @@ function userLogin(e) {
 
   dataFromLogin(formData);
   setUserCookie();
+
   checkLogin();
 
 }
@@ -35,13 +36,30 @@ function setUserCookie() {
 
 
 function checkLogin() {
-  if (checkUserAndPassword() === true) {
+
+  if (checkUserAndPassword() === true && checkPassword() === true) {
     window.open('/board.html', '_self');
   }
   else {
     alert('wrong Username or Password')
   }
 }
+
+function checkPassword(){ 
+  for (let i = 0; i < userObjects.length; i++) {
+  if (userObjects[i]['userName'] == loginUser.userName && userObjects[i]['userPassword'] == loginUser.userPassword) {
+    loginUser.userPassword = "";
+    return true;
+  }
+
+}
+loginUser.userPassword = "";
+return false;
+
+
+}
+  
+
 
 /**
  * Data interface between server and Login.html
