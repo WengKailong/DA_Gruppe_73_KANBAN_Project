@@ -48,7 +48,7 @@ function checkLogin() {
  * @param {*} e 
  */
 
-function createNewUser(e) {
+async function createNewUser(e) {
   e.preventDefault();
 
   // get input data from the form
@@ -67,8 +67,10 @@ function createNewUser(e) {
     GLOBAL_VARIABLES.currUserId++;
   
     // update data on server
-    saveToServer("userObjects", userObjects);
-    saveToServer("globalVariables", GLOBAL_VARIABLES);
+    await saveToServer("userObjects", userObjects);
+    await saveToServer("globalVariables", GLOBAL_VARIABLES);
+
+    window.open('/index.html', '_self');
   }
 
   
@@ -82,5 +84,9 @@ function checkForDouble(array, reference, searchcriteria) {
       return true;
     }
   }
+}
+
+function logout(){
+  document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 

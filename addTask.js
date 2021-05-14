@@ -74,7 +74,7 @@ function loadAsignedUsers() {
     let user = new User();
     user = user.getUserById(userId, userObjects);
     loadElement.innerHTML += `<div class=" d-flex flex-column align-items-center" style="width: 70px;">
-    <div class="form-profile-container mr-30">
+    <div class="form-profile-container">
       <img src="${user.userProfileAvatar}" alt="" class="h-100" />
     </div>
     <span>${user.userName}</span>
