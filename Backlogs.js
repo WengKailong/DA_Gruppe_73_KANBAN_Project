@@ -16,13 +16,23 @@ function loadLogs() {
         let id = task.taskAsignedTo[j];
         let user = new User();
         user = user.getUserById(id, userObjects);
-  
-        let newLog = new Log(task, user);
+
+        if (task.taskUrgency == '1') {
+          UrgencyColor = 'Heigh';
+        } else { if (task.taskUrgency == '2') {
+          UrgencyColor = 'Medium';
+        } else {UrgencyColor = 'Low';} 
+          
+        }
+        
+        let newLog = new Log(task, user, UrgencyColor);
         loadLogElement(newLog);
+
+        
+
       }
     }
-  }, 200);
-  
+  }, 200); 
 }
 
 function loadLogElement(newLog) {
@@ -35,11 +45,25 @@ function loadLogElement(newLog) {
   
 
   
+  
+
+  
+  
+  
+
+  
 
 
-      loadElement.innerHTML += `<div class="container-fluid row mb-2 p-zero  bg-form-input" style="height: 70px">
+
+
+      loadElement.innerHTML += `
       
-        <div class="vl col-1 d-flex align-items-center height-100">
+      <div class="container-fluid row mb-2 p-zero  bg-form-input" style="height: 70px">
+      
+     
+      
+
+        <div id = "User-Information"  class="${newLog.UrgencyColor} col-1 d-flex align-items-center height-100">
           <img
             class=" h-50  d-inline-block rounded-circle"
             src="${newLog.userAvatar}"
@@ -48,6 +72,9 @@ function loadLogElement(newLog) {
         </div>
         
         <div class="col-3 h-100 align-txt">
+
+        
+
         <div class="raw h-100 align-txt h-25">${newLog.userName}</div>
 
         <div class="raw h-100 align-txt h-25" ><a href="${newLog.userEmail}">${newLog.userEmail}</a></div></div>

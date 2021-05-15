@@ -4,6 +4,9 @@ let loginUser = {
 }
 var formData
 
+
+
+
 function userLogin(e) {
   e.preventDefault();
 
@@ -12,6 +15,7 @@ function userLogin(e) {
 
   dataFromLogin(formData);
   setUserCookie();
+
   checkLogin();
 
 }
@@ -32,7 +36,8 @@ function setUserCookie() {
 
 
 function checkLogin() {
-  if (checkUserAndPassword() === true) {
+
+  if (checkUserAndPassword() === true && checkPassword() === true) {
     window.open('/board.html', '_self');
   }
   else {
@@ -40,12 +45,28 @@ function checkLogin() {
   }
 }
 
+function checkPassword(){ 
+  for (let i = 0; i < userObjects.length; i++) {
+  if (userObjects[i]['userName'] == loginUser.userName && userObjects[i]['userPassword'] == loginUser.userPassword) {
+    loginUser.userPassword = "";
+    return true;
+  }
+
+}
+loginUser.userPassword = "";
+return false;
+
+
+}
+  
+
+
 /**
  * Data interface between server and Login.html
  * @param {*} e 
  */
 
-function createNewUser(e) {
+async function createNewUser(e) {
   e.preventDefault();
 
   // get input data from the form
@@ -64,8 +85,10 @@ function createNewUser(e) {
     GLOBAL_VARIABLES.currUserId++;
   
     // update data on server
-    saveToServer("userObjects", userObjects);
-    saveToServer("globalVariables", GLOBAL_VARIABLES);
+    await saveToServer("userObjects", userObjects);
+    await saveToServer("globalVariables", GLOBAL_VARIABLES);
+
+    window.open('/index.html', '_self');
   }
 
   
@@ -81,3 +104,6 @@ function checkForDouble(array, reference, searchcriteria) {
   }
 }
 
+function logout(){
+  document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
