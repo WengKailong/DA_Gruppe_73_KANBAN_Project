@@ -1,4 +1,5 @@
 let loginUser = {
+  userId: -1,
   userName: '',
   userPassword: ''
 }
@@ -49,6 +50,7 @@ function checkPassword(){
   for (let i = 0; i < userObjects.length; i++) {
   if (userObjects[i]['userName'] == loginUser.userName && userObjects[i]['userPassword'] == loginUser.userPassword) {
     loginUser.userPassword = "";
+    loginUser.userId = i;
     return true;
   }
 

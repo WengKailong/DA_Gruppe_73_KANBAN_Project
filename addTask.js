@@ -70,7 +70,7 @@ function loadAsignedUsers() {
   loadElement.innerHTML = "";
 
   for (let i = 0; i < asignedUsers.length; i++) {
-    let userId = asignedUsers[i];
+     userId = asignedUsers[i];
     let user = new User();
     user = user.getUserById(userId, userObjects);
     loadElement.innerHTML += `<div class=" d-flex flex-column align-items-center" style="width: 70px;">
