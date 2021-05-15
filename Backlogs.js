@@ -82,6 +82,6 @@ function loadLogElement(newLog) {
 
         <div class="col-3 h-100 align-txt">${newLog.logCategory}</div>
     
-        <div class="col-4 h-100 align-txt">${newLog.logDetails}</div>
+        <div class="board-text-short col-4 h-100 align-txt">${newLog.logDetails}</div>
       </div>`;
 }
