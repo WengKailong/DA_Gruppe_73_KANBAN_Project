@@ -40,7 +40,7 @@ h2{
 
 
 .board-column-text-board{
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: #f4f3fb;
     height: 60vh;
     padding-top:16px;
     overflow: hidden;
@@ -53,7 +53,7 @@ h2{
 }
 
 .category{
-    background-color: lightseagreen;
+    background-color: #1e3190;
     border-radius: 8px;
     padding:8px;
     
