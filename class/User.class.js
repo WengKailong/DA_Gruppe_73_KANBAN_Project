@@ -2,7 +2,7 @@ class User{
     userId;
     userName;
     userPassword;   // to be decided
-    userCategory;
+ //   userCategory;
     userEmail;
     userProfileAvatar;
 
@@ -10,7 +10,7 @@ class User{
         this.userId = id;
         this.userName = name;
         this.userPassword = password;
-        this.userCategory = category;
+      //  this.userCategory = category;
         this.userEmail = email;
         this.userProfileAvatar = 'img/profile.png';
 
@@ -20,7 +20,7 @@ class User{
     dataFromInput(formData){
         this.userName = formData.get('userName');
         this.userPassword = formData.get('userPassword');
-        this.userCategory = formData.get('userCategory');
+       // this.userCategory = formData.get('userCategory');
         this.userEmail = formData.get('userEmail');
 
         if(formData.get('userAvatar').name != ''){

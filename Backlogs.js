@@ -28,11 +28,12 @@ function loadLogs() {
         let newLog = new Log(task, user, UrgencyColor);
         loadLogElement(newLog);
 
-        
+       
 
       }
     }
   }, 200); 
+
 }
 
 function loadLogElement(newLog) {

@@ -21,6 +21,7 @@
     taskDescription;
     taskDueDate;
     taskUrgency;
+    taskStatus;
     taskAsignedTo = [];
     taskStatus = 'todo';
     listId = 0;
@@ -46,6 +47,7 @@
         date = year + '-' + month + '-' + day;
 
         this.lastUpDate = date;
+        this.taskStatus = 'todo';
         this.taskAsignedTo = asignedUsers;
     }
 

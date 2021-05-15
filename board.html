@@ -111,35 +111,42 @@
 
   <!--Modal Structure-->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    >
+   
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
+      <form onsubmit="saveChanges(event)" class="modal-content" id="boardModal">
         <div class="modal-header">
           <span id="board-modal-date" class="board-date"></span>
-          <h5 class="modal-title" id="modal-title">Modal title</h5>
+          <input class="d-none" type="number" id="modal-id">
+          <input type="text" class="modal-title modal-form-none" name="taskTitle" style="font-size:1.8rem" id="modal-title" value="Modal title">
+          <!-- 
+            <h5 class="modal-title" id="modal-title">Modal title</h5>
+          -->
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <textarea id="modal-description" name="taskDescription" class="modal-form-none" cols= 30 rows=10 value=""> </textarea>
+          <!--
           <p id="modal-description">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
             modi nostrum magni beatae commodi omnis, quod officiis, eum natus
             placeat, rem velit a optio nulla quaerat veniam. Sit, perferendis
             impedit?
           </p>
+          -->
         </div>
         <div class="modal-footer">
           <div id="board-modal-footer">
             <img id="modal-avatar" class="avatar" src="img/profile.png" alt="creator" />
-            <span id="modal-creator">Timm Eichholz</span>
+            <span id="modal-creator"></span>
           </div>
-          <div id="modal-category" class="category">Management</div>
+          <div id="modal-category" class="category"></div>
 
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button  type="submit" class="btn btn-primary">Save changes</button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </body>
