@@ -1,14 +1,11 @@
 let asignedUsers = [];
 
-
-
 function loadAddTaskSite() {
   setTimeout(() => {
-    navItemActive('nav-btn-addTask');
+    navItemActive("nav-btn-addTask");
     loadCategorySelect(); // load categories from GLOBAL_VARIABLES
     loadAsignToUserSelect(); // load select users for task asign to
   }, 200);
-  
 }
 
 function loadCategorySelect() {
@@ -47,21 +44,25 @@ function loadAsignToUserSelect() {
 function createNewTask(e) {
   e.preventDefault();
 
-  // get input data from the form
-  let inputForm = document.getElementById("input-task");
-  var formData = new FormData(inputForm);
+  if (asignedUsers == "") {
+    alert("New Task must be asigned to at least user!");
+  } else {
+    // get input data from the form
+    let inputForm = document.getElementById("input-task");
+    var formData = new FormData(inputForm);
 
-  // create new task
-  let newTask = new Task(GLOBAL_VARIABLES, asignedUsers);
-  newTask.dataFromInput(formData);
+    // create new task
+    let newTask = new Task(GLOBAL_VARIABLES, asignedUsers);
+    newTask.dataFromInput(formData);
 
-  // add new task to existing tasks
-  taskObjects.push(newTask);
+    // add new task to existing tasks
+    taskObjects.push(newTask);
 
-  // update data on server
-  saveToServer("taskObjects", taskObjects);
-  GLOBAL_VARIABLES.currTaskId++;
-  saveToServer("globalVariables", GLOBAL_VARIABLES);
+    // update data on server
+    saveToServer("taskObjects", taskObjects);
+    GLOBAL_VARIABLES.currTaskId++;
+    saveToServer("globalVariables", GLOBAL_VARIABLES);
+  }
 }
 
 function loadAsignedUsers() {
