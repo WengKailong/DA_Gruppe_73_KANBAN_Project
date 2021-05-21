@@ -62,6 +62,7 @@ function createNewTask(e) {
     saveToServer("taskObjects", taskObjects);
     GLOBAL_VARIABLES.currTaskId++;
     saveToServer("globalVariables", GLOBAL_VARIABLES);
+    alert("New Task has been created succesfully! Check it out in Board.");
   }
 }
 

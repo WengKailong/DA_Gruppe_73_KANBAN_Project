@@ -63,6 +63,7 @@ function getCookie() {
         name: namePw.split(',')[0],
         
       }
+      console.log(userData.name);
       return userData
     }
   }
@@ -97,4 +98,12 @@ async function loginActive() {
 
 async function saveToServer(objectName, object) {
   await backend.setItem(objectName, JSON.stringify(object));
+}
+
+
+function setUserAvatar(){
+  let currentUser = new User();
+  currentUser = currentUser.getUserByName(userData.name);
+  console.log(currentUser);
+  document.getElementById('nav-user-avatar').src = currentUser.userProfileAvatar;
 }

@@ -39,5 +39,7 @@ function includeHTML() {
 function navItemActive(itemId){
  setTimeout(function(){
     document.getElementById(itemId).classList.add('active-nav-item');
+    setUserAvatar();
  },200);
 }
+
