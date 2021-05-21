@@ -114,3 +114,16 @@ function urgencyPicker(task){
   let urgency = urgencyColor[task['taskUrgency']];
   return urgency;
 }
+
+async function setUserAvatar(){
+  await init();
+
+  setTimeout(() => {
+    let currentUser = new User();
+    currentUser = currentUser.getUserByName(userData.name);
+    console.log(currentUser);
+    document.getElementById('nav-user-avatar').src = currentUser.userProfileAvatar;
+
+  },500);
+  
+}

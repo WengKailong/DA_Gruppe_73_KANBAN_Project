@@ -242,16 +242,16 @@ function newListObject(){
       </button>
     </p>
     <div class="collapse" id="collapseExample">
-      <form>
+      <form onsubmit="newBoardList(event)">
         <div class="mb-3">
           <label for="exampleFormControlTextarea1" class="form-label"></label>
-          <input class="form-control" id="listInput" rows="3"></input>
+          <input class="form-control" id="listInput" rows="1" required></input>
         </div>
-        <button  class="btn btn-primary btn-lg font-bold bg-purple h-100" onclick="newBoardList(event)">Create</button>
+        <button  class="btn btn-primary btn-lg font-bold bg-purple h-100" type="submit">Create</button>
       </form>
     </div>
   </div>
-  <img ondragover="allowDrop(event)" class="" ondrop="drop(event, 'backlog') " src="img/trash.png" alt="">
+  <img ondragover="allowDrop(event)" class="m-3" ondrop="drop(event, 'backlog') " src="img/trash.png" alt="">
   </div></div>`
     }
 

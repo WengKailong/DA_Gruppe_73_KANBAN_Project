@@ -5,8 +5,7 @@ let loginUser = {
 }
 var formData
 
-
-
+let selectedAvatar = '/img/profile.png';
 
 function userLogin(e) {
   e.preventDefault();
@@ -76,11 +75,11 @@ async function createNewUser(e) {
   var formData = new FormData(inputForm);
 
   // create new task
-  let newUser = new User(GLOBAL_VARIABLES.currUserId);
+  let newUser = new User(GLOBAL_VARIABLES.currUserId, selectedAvatar);
   newUser.dataFromInput(formData);
 
   if (checkForDouble(userObjects, 'userName', newUser.userName) === true || checkForDouble(userObjects, 'userEmail', newUser.userEmail) === true){
-    alert('Der Username oder die Emailadresse wird bereits verwendet')
+    alert('Der Username oder die Emailadresse wird bereits verwendet');
 
   }else{
     userObjects.push(newUser);
@@ -109,3 +108,16 @@ function checkForDouble(array, reference, searchcriteria) {
 function logout(){
   document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
+
+
+function selectAvatar(index){
+  let avatar = ['avatar1.jpg', 'avatar2.png', 'avatar3.png', 'avatar4.png'];
+
+  let selected = document.getElementById('user-avatar');
+
+  selected.src = 'img/' + avatar[index];
+
+  selectedAvatar = 'img/' + avatar[index];
+
+}
+

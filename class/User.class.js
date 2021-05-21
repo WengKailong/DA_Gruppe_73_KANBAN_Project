@@ -6,13 +6,9 @@ class User{
     userEmail;
     userProfileAvatar;
 
-    constructor(id, name, password, category, email, avatar){
+    constructor(id, avatar){
         this.userId = id;
-        this.userName = name;
-        this.userPassword = password;
-      //  this.userCategory = category;
-        this.userEmail = email;
-        this.userProfileAvatar = 'img/profile.png';
+        this.userProfileAvatar = avatar;
 
     }
 
@@ -22,10 +18,6 @@ class User{
         this.userPassword = formData.get('userPassword');
        // this.userCategory = formData.get('userCategory');
         this.userEmail = formData.get('userEmail');
-
-        if(formData.get('userAvatar').name != ''){
-            this.userProfileAvatar = 'img/' + formData.get('userAvatar').name;
-        }
         
         console.log(this);
     }
@@ -40,6 +32,17 @@ class User{
             
         }
 
+    }
+
+    getUserByName(userName){
+        for (let i = 0; i < userObjects.length; i++) {
+            let user = userObjects[i];
+
+            if(user.userName == userName){
+                return user;
+            }
+            
+        }
     }
 
     

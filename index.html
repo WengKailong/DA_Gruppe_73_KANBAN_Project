@@ -100,8 +100,21 @@
         justify-content: center;
       }
 
+      .form-profile-container {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #0dcaf0;
+}
+
      
-	
+.btn-white {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
 	
 
 
@@ -191,9 +204,6 @@
           <div id="login-box_SignIn" class="col-md-12">
               <form id="input-login" onsubmit="userLogin(event)" class="form" action="" method="post">
                   <h3 class="text-center text-info">Login</h3>
-
-
-
       <div class="form-group">
         <label for="input-login-username" class="form-label-text text-info">Username</label>
         <input name="userName" type="text" class="form-control text-info" id="input-login-username" value="" placeholder="" required>
@@ -248,13 +258,13 @@ function
     <div class="form-group mt-3">
       <label for="input-user-name" class="text-center text-info">USERNAME</label>
       <input name="userName" type="text" class="form-control text-center text-info" id="input-user-name"
-        aria-describedby="emailHelp" placeholder="" />
+        aria-describedby="emailHelp" placeholder="" required/>
     </div>
 
     <div class="form-group mt-3 text-info">
       <label for="input-user-password" class="text-center text-info">PASSWORD</label>
       <input name="userPassword" type="password" class="form-control text-center text-info" id="input-user-password"
-        aria-describedby="emailHelp" placeholder="" />
+        aria-describedby="emailHelp" placeholder="" required/>
     </div>
 
     <div class="form-group mt-3">
@@ -275,13 +285,121 @@ function
     <div class="text-info">
       <label for="input-user-email" class="text-center text-info">EMAIL</label>
       <input name="userEmail" type="email" class="form-control text-center text-info" id="input-user-email"
-        aria-describedby="emailHelp" placeholder="" />
+        aria-describedby="emailHelp" placeholder="" required/>
     </div>
 
     <div class="form-group">
       <label for="input-user-avatar" class="text-center text-info">AVATAR</label>
-      <input name="userAvatar" type="file" class="form-control text-center text-info" id="input-user-avatar"
-        aria-describedby="emailHelp" placeholder="Select user profile picture" />
+      <div class="container mt-3 mb-3 align-items-center row">
+        <div class="w-auto d-flex" id="asigned-users">
+          <div class=" d-flex flex-column align-items-center" style="width: 70px;">
+            <div class="form-profile-container mr-30">
+              <img id="user-avatar" src="img/profile.png" alt="" class="h-100" />
+            </div>
+          </div>
+        </div>
+
+        <div class="justify-content-center" style="width: 60px">
+          <div
+            class="asign-task-to-new-user d-flex justify-content-center align-items-center"
+          >
+            <div class="dropdown">
+              <button
+                class="btn-white dropdown-toggle-btn"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-plus"
+                  viewBox="0 0 16 16"
+                  style="color: #3e457a"
+                >
+                  <path
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                  />
+                </svg>
+              </button>
+              <div
+                class="dropdown-menu scrollable-menu"
+                id="input-task-asignto"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  onclick="selectAvatar(0)"
+                  ><div class="row" style="height: 30px">
+                    <div class="col-4 h-100">
+                      <img
+                        class="h-100 rounded-circle"
+                        src="img/avatar1.jpg"
+                        alt=""
+                      />
+                    </div>
+                    <div class="col-8 h-100">Herren 1</div>
+                  </div></a
+                >
+
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  onclick="selectAvatar(1)"
+                  ><div class="row" style="height: 30px">
+                    <div class="col-4 h-100">
+                      <img
+                        class="h-100 rounded-circle"
+                        src="img/avatar2.png"
+                        alt=""
+                      />
+                    </div>
+                    <div class="col-8 h-100">Herren 2</div>
+                  </div></a
+                >
+
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  onclick="selectAvatar(2)"
+                  ><div class="row" style="height: 30px">
+                    <div class="col-4 h-100">
+                      <img
+                        class="h-100 rounded-circle"
+                        src="img/avatar3.png"
+                        alt=""
+                      />
+                    </div>
+                    <div class="col-8 h-100">Damen 1</div>
+                  </div></a
+                >
+
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  onclick="selectAvatar(3)"
+                  ><div class="row" style="height: 30px">
+                    <div class="col-4 h-100">
+                      <img
+                        class="h-100 rounded-circle"
+                        src="img/avatar4.png"
+                        alt=""
+                      />
+                    </div>
+                    <div class="col-8 h-100">Damen 2</div>
+                  </div></a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <div class="form-group">
@@ -306,6 +424,17 @@ end body
 -->
 </div>
 </div>
+
+<script>
+      
+  $(".dropdown-toggle-btn").on("click", function () {
+    $(this)
+      .closest(".dropdown")
+      .children(".dropdown-menu")
+      .toggleClass("show");
+  });
+ 
+</script>
 </body>
 
 </html>
