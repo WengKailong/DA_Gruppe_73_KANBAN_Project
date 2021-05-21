@@ -43,8 +43,17 @@ h2{
     background-color: #f4f3fb;
     height: 60vh;
     padding-top:16px;
-    overflow: hidden;
+    overflow: auto;
 }
+
+.board-column-text-board::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+.board-column-text-board {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 
 .avatar{
     width: 40px;
@@ -72,6 +81,18 @@ h2{
     width: 100%;
 }
 
+.board-task-footer{
+    height: 40px;
+    overflow: hidden;
+    justify-content: space-between;
+}
+
+.board-avatar-container{
+    display: flex;
+    
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 /**
 left Bordercolors
 
@@ -79,4 +100,43 @@ left Bordercolors
     border-left: orange 4px solid;
     
 }
+
+.low{
+    -webkit-box-shadow: inset 0px 0px 2px 0px green ;
+box-shadow: inset 0px 2px 5px -3px green;
+}
+
+.normal{
+    -webkit-box-shadow: inset 0px 2px 5px -2px yellow;
+box-shadow: inset 0px 2px 5px -2px yellow;
+}
+
+.high{
+    -webkit-box-shadow: inset 0px 2px 5px -2px red;
+box-shadow: inset 0px 2px 5px -2px red;
+}
 */
+
+.board-urgency-point{
+    height: 15px;
+    width : 15px;
+    border-radius: 100%;
+    border: solid 1px lightgray;
+
+}
+.modal-border-bottom{
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-time-container{
+    font-weight: bold;
+    border-radius: 8px;
+    border: 1px gray solid;
+    background-color: lightgray;
+    padding-left:8px;
+    padding-right:8px;
+    height: 24px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}

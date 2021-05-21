@@ -16,7 +16,7 @@ function loadLogs() {
         let id = task.taskAsignedTo[j];
         let user = new User();
         user = user.getUserById(id, userObjects);
-
+/**
         if (task.taskUrgency == '1') {
           UrgencyColor = 'Heigh';
         } else { if (task.taskUrgency == '2') {
@@ -24,8 +24,9 @@ function loadLogs() {
         } else {UrgencyColor = 'Low';} 
           
         }
-        
-        let newLog = new Log(task, user, UrgencyColor);
+         */
+        let urgency = urgencyPicker(task) //returns value NULL, "low", "normal", "high" 
+        let newLog = new Log(task, user, urgency);
         loadLogElement(newLog);
 
        
@@ -43,28 +44,14 @@ function loadLogElement(newLog) {
    */
   let loadElement = document.getElementById("load-logs");
 
-  
-
-  
-  
-
-  
-  
-  
-
-  
-
-
-
-
       loadElement.innerHTML += `
       
       <div class="container-fluid row mb-2 p-zero  bg-form-input" style="height: 70px">
       
      
       
-
-        <div id = "User-Information"  class="${newLog.UrgencyColor} col-1 d-flex align-items-center height-100">
+<div id="urgency" class="urgency-border ${newLog.UrgencyColor}"></div>
+        <div id = "User-Information"  class=" col-1 d-flex align-items-center height-100">
           <img
             class=" h-50  d-inline-block rounded-circle"
             src="${newLog.userAvatar}"

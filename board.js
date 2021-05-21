@@ -1,12 +1,19 @@
+/**
+ * 
+ */
 let dropId;
 
-
+/**
+ * 
+ */
 async function boardInit() {
     await init();
     loadBoardsanew()
 }
 
-
+/**
+ * 
+ */
 function loadBoardsanew(){
     loadListsToBoard();
     for (let i = 0; i < taskObjects.length; i++) {
@@ -31,39 +38,40 @@ function loadBoardsanew(){
  * @param {} id allTasks object
  */
 function writeTasks(id) {
-    document.getElementById(taskObjects[id]['taskStatus']).innerHTML += taskPart1(id) + taskPart2(id) + taskPart3(id)
+    document.getElementById(taskObjects[id]['taskStatus']).innerHTML += taskPart1(id) + taskPartAssignedTo(id) 
 }
 
 function taskPart1(id) {
-    return `<div id="id${taskObjects[id]['taskId']}" class="board-entry" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillModal(${id}) " draggable="true" ondragstart="drag(event, ${id} )">
+    return `<div id="id${taskObjects[id]['taskId']}" class="board-entry " data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillModal(${id}) " draggable="true" ondragstart="drag(event, ${id} )" ondragover="">
         <div class="${taskObjects[id]['taskCategory']}">
-            <span class="board-date">${taskObjects[id]['taskDueDate']}</span>
-            <h4>${taskObjects[id]['taskTitle']}</h4>
+           <div class="d-flex justify-content-between w-100"> 
+                <span class="board-date">${taskObjects[id]['taskDueDate']}</span> 
+                <div class="board-urgency-point ${urgencyColor[taskObjects[id]['taskUrgency']]}"></div></div>
+            <h4 class="board-text-short">${taskObjects[id]['taskTitle']}</h4>
             <p class="board-text-short">${taskObjects[id]['taskDescription']}</p>
-            <div class="d-flex justify-content-around">
-                <div class="category">${categoryObjects[taskObjects[id]['taskCategory']]}</div> <div>         `
+            <div class="d-flex  board-task-footer">
+                <div class="category">${categoryObjects[taskObjects[id]['taskCategory']]}</div> <div class="board-avatar-container">         `
 }
 /**
  * 
  * @param {Number} id goes through taskAsignedTo and loads all of them   
  * @returns 
  */
-function taskPart2(id) {
+function taskPartAssignedTo(id) {
     let assignedTo = '';
     for (let i = 0; i < taskObjects[id]['taskAsignedTo'].length; i++) {
-        assignedTo += `<img class="avatar" src=${[userObjects[taskObjects[id]['taskAsignedTo'][i]]['userProfileAvatar']]}                   alt=${userObjects[taskObjects[id]['taskAsignedTo'][i]]['userName']}></img>`
+        assignedTo += `<img class="avatar" src=${[userObjects[taskObjects[id]['taskAsignedTo'][i]]['userProfileAvatar']]}                   alt=${userObjects[taskObjects[id]['taskAsignedTo'][i]]['userName']}></img>
+        
+    `
     }
-    console.log(assignedTo);
+    assignedTo +=`</div></div>
+    </div>
+</div>`
     return assignedTo;
 }
 
-function taskPart3(id) {
-    return `</div>
-    </div>
-    </div>
-</div>`
 
-}
+
 
 
 /**
@@ -71,8 +79,15 @@ function taskPart3(id) {
  * @param {Object} id allTasks object
  */
 function fillModal(id) {
+    removeOldModalData()
+    let urgency = urgencyPicker(taskObjects[id])
     let modalFooter = document.getElementById('board-modal-footer');
     modalFooter.innerHTML = "";
+
+    document.getElementById('modal-dueto').innerHTML = "Due to Date: "+ taskObjects[id]['taskDueDate']
+    document.getElementById('modal-lastUpdate').innerHTML = "last Update: "+ taskObjects[id]['lastUpDate']
+    document.getElementById('modal-urgency').classList.add(urgency)
+    document.getElementById('modal-urgency').innerHTML= "Urgency: "+ urgency
 
     document.getElementById('modal-id').value = taskObjects[id]['taskId'];
     document.getElementById('modal-title').value = taskObjects[id]['taskTitle'];
@@ -82,14 +97,17 @@ function fillModal(id) {
     for (let i = 0; i < taskObjects[id]['taskAsignedTo'].length; i++) {
        // let modalAvatar = document.getElementById('modal-avatar');
         // modalAvatar.src = userObjects[taskObjects[id]['taskAsignedTo'][i]]['userProfileAvatar'];
-        modalFooter.innerHTML += `
+        modalFooter.innerHTML += `<div class="d-flex flex-column align-items-center p-1">
     <img  class="avatar" src=${userObjects[taskObjects[id]['taskAsignedTo'][i]]['userProfileAvatar']} alt=${userObjects[taskObjects[id]['taskAsignedTo'][i]]['userName']} />
-    <span >${userObjects[taskObjects[id]['taskAsignedTo'][i]]['userName']}</span>`
+    <span >${userObjects[taskObjects[id]['taskAsignedTo'][i]]['userName']}</span><div>`
 
         // document.getElementById('modal-category').classList.add(allTasks[id]['category'])
     }
 }
 
+function removeOldModalData(){
+    document.getElementById('modal-urgency').classList.remove('high', 'normal', 'low');
+}
 
 /**
  * 
@@ -101,7 +119,9 @@ function saveChanges(ev) {
     saveToServer("taskObjects", taskObjects);
     loadBoardsanew();
 }
-
+/**
+ * 
+ */
 function changeTask(){
     let newTask = { 
         title: "",
@@ -117,6 +137,7 @@ function changeTask(){
 
     taskObjects[id]['taskTitle'] = newTask.title;
     taskObjects[id]['taskDescription'] = newTask.description;
+    newLastUpdate(id)
 }
 
 
@@ -143,13 +164,14 @@ function changeTask(){
         ev.preventDefault();
         var data = ev.dataTransfer.getData("text");
         ev.target.appendChild(document.getElementById(data));
-        console.log('dropid: ', dropId);
-        console.log('dropStatus: ', dropCategory);
-        console.log(taskObjects[dropId]['staskStatus']);
         taskObjects[dropId]['taskStatus'] = dropCategory;
+        newLastUpdate(dropId)
         saveToServer("taskObjects", taskObjects);
     }
-
+/**
+ * 
+ * @param {*} ev 
+ */
     function newBoardList(ev) {
         ev.preventDefault();
         newListObject();
@@ -157,6 +179,10 @@ function changeTask(){
         loadBoardsanew()
     }
 
+
+    /**
+     * 
+     */
 function newListObject(){
     let newList = { 
         listId : "",
@@ -169,6 +195,9 @@ function newListObject(){
     listObjects.push(newList);
 }
 
+/**
+ * 
+ */
     function loadListsToBoard() {
         let loadElement = document.getElementById("board-body");
         loadElement.innerHTML = '';
@@ -181,6 +210,11 @@ function newListObject(){
         loadElement.innerHTML += buttonNewList()
     }
 
+    /**
+     * 
+     * @param {*} list 
+     * @returns 
+     */
     function writeListColumn(list) {
         return `<div class="board-column">
     <h2>${list.listName}</h2>
@@ -192,11 +226,16 @@ function newListObject(){
     ></div>
   </div>`;
     }
+
+    /**
+     * 
+     * @returns 
+     */
     function buttonNewList() {
-        return `<div>
+        return `<div class=""><div>
     <p style="flex-direction: column">
 
-      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+      <button class="btn btn-primary btn-lg font-bold bg-purple h-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
         aria-expanded="false" aria-controls="collapseExample">
         new List
     
@@ -208,10 +247,24 @@ function newListObject(){
           <label for="exampleFormControlTextarea1" class="form-label"></label>
           <input class="form-control" id="listInput" rows="3"></input>
         </div>
-        <button  class="btn btn-primary" onclick="newBoardList(event)">Create</button>
+        <button  class="btn btn-primary btn-lg font-bold bg-purple h-100" onclick="newBoardList(event)">Create</button>
       </form>
     </div>
-  </div>`
+  </div>
+  <img ondragover="allowDrop(event)" class="" ondrop="drop(event, 'backlog') " src="img/trash.png" alt="">
+  </div></div>`
     }
 
     
+
+    function newLastUpdate(id){
+        let currentTask = taskObjects[id];
+        let changedTask = new Task(id);
+        currentTask.lastUpDate = changedTask.lastUpDate;
+        taskObjects[id] = currentTask;
+        
+    }
+    
+    function newSize(){
+        document.getElementById('trash').style = "height: 128px; width:128px";
+    }

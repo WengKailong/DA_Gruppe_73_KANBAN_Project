@@ -2,11 +2,15 @@ userData = {
   name: '',
   password: ''
 }
+urgencyColor = ['low', 'normal', 'high']; //in backlog.css are classes with the same name as in board.css. 
+
+
 
 /**
  * 
  */
 setURL(
+  
   "http://gruppe-73.developerakademie.com/testBackEnd/smallest_backend_ever-master"
 );
 
@@ -99,4 +103,14 @@ async function loginActive() {
 
 async function saveToServer(objectName, object) {
   await backend.setItem(objectName, JSON.stringify(object));
+}
+
+/**
+ * 
+ * @param {Object} task  //is used with taskobjects[]
+ * @returns value  NULL, "low", "normal", "high" 
+ */
+function urgencyPicker(task){
+  let urgency = urgencyColor[task['taskUrgency']];
+  return urgency;
 }

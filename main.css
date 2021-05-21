@@ -21,3 +21,40 @@ body {
   .align-center {
     align-items: center;
   }
+
+ 
+
+  .font-bold {
+    font-weight: 700;
+  }
+  .bg-purple {
+    background-color: #18318c;
+    border: none;
+  }
+  
+  .btn-lg{
+      font-size: 1rem;
+  }
+  .urgency-border{
+    margin-right: calc(var(--bs-gutter-x)/ 2);
+    padding: 0px !important;
+    width: 5px !important;
+    
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 100%;}
+
+  .low{
+    background-color: rgb(56, 228, 13);
+    
+
+}
+.normal{
+    background-color: rgb(216, 240, 7);
+    
+}
+.high{
+    background-color: red;
+    
+}
+  
