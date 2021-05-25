@@ -21,7 +21,7 @@ h2{
 
 .board-main-body{
     
-    margin-left:202px;
+    /* margin-left:202px; */
     display: flex;
     justify-self: center;
     width: 100%;

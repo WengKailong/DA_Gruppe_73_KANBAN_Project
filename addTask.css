@@ -1,13 +1,3 @@
-
-
-.wrapper {
-  display: flex;
-  width: 100%;
-  align-items: stretch;
-}
-
-
-
 .font-bold {
   font-weight: 700;
 }
@@ -83,4 +73,12 @@
   border-radius: 50%;
   background-color: #d8dad6;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+
+  .wrapper-pagecontent {
+    width: 97%;
+  }
+
 }

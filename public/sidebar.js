@@ -43,3 +43,10 @@ function navItemActive(itemId){
  },200);
 }
 
+
+function menuToggle(){
+  console.log('test');
+  $("#navbar-left").toggleClass("toggle-collapse");
+}
+
+
