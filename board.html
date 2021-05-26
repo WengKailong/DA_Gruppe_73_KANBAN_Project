@@ -54,22 +54,22 @@
 </head>
 
 <body onload="boardInit(), navItemActive('nav-btn-board'), loginActive()">
-  <div class="wrapper">
-  <!-- navbar left -->
+  <!-- <div class="wrapper">
+    <!-- navbar left -->
   <div w3-include-html="public/sidebar.html"></div>
-
-  <!--board Structure-->
-  <div class="board-column d-none">
-    <h2>in Progress</h2>
-    <div id="backlog" class="board-column-text-board " ondrop="drop(event, 'progress')" ondragover="allowDrop(event)">
+  <div class="wrapper">
+    <!--board Structure-->
+    <div class="board-column d-none">
+      <h2>in Progress</h2>
+      <div id="backlog" class="board-column-text-board " ondrop="drop(event, 'progress')" ondragover="allowDrop(event)">
+      </div>
     </div>
-  </div>
-  
-  <div class="board-main-body" id="board-body">
-    <div class="board-column">
-      <h2>to do</h2>
-      <div id="todo" class="board-column-text-board" ondrop="drop(event, 'todo')" ondragover="allowDrop(event)">
-        <!--testing entry for board
+
+    <div class="board-main-body" id="board-body">
+      <div class="board-column">
+        <h2>to do</h2>
+        <div id="todo" class="board-column-text-board" ondrop="drop(event, 'todo')" ondragover="allowDrop(event)">
+          <!--testing entry for board
                 <div id="entryTest" class="board-entry " data-bs-toggle="modal" data-bs-target="#exampleModal"  onclick="fillModal(0)" draggable="true" ondragstart="drag(event)">
                     <div class="management">
                         <span class="board-date" >01.02.2021</span>
@@ -85,70 +85,71 @@
                     </div>
                 </div>
 -->
+        </div>
+      </div>
+      <div class="board-column">
+        <h2>in Progress</h2>
+        <div id="progress" class="board-column-text-board" ondrop="drop(event, 'progress')"
+          ondragover="allowDrop(event)">
+        </div>
+      </div>
+      <div class="board-column">
+        <h2>Testing</h2>
+        <div id="testing" class="board-column-text-board" ondrop="drop(event, 'testing')" ondragover="allowDrop(event)">
+        </div>
+      </div>
+      <div class="board-column">
+        <h2>Done</h2>
+        <div id="done" class="board-column-text-board" ondrop="drop(event, 'done')" ondragover="allowDrop(event)"></div>
+      </div>
+      <div>
+        <p style="flex-direction: column">
+
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+            aria-expanded="false" aria-controls="collapseExample">
+            Button with data-bs-target
+          </button>
+        </p>
+        <div class="collapse" id="collapseExample">
+          <form>
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+              <input class="form-control" id="listInput" rows="3"></input>
+            </div>
+            <button type="submit" class="btn btn-primary" onsubmit="newBoardList()">new List</button>
+          </form>
+        </div>
       </div>
     </div>
-    <div class="board-column">
-      <h2>in Progress</h2>
-      <div id="progress" class="board-column-text-board" ondrop="drop(event, 'progress')" ondragover="allowDrop(event)">
-      </div>
     </div>
-    <div class="board-column">
-      <h2>Testing</h2>
-      <div id="testing" class="board-column-text-board" ondrop="drop(event, 'testing')" ondragover="allowDrop(event)">
-      </div>
-    </div>
-    <div class="board-column">
-      <h2>Done</h2>
-      <div id="done" class="board-column-text-board" ondrop="drop(event, 'done')" ondragover="allowDrop(event)"></div>
-    </div>
-    <div>
-      <p style="flex-direction: column">
 
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-          aria-expanded="false" aria-controls="collapseExample">
-          Button with data-bs-target
-        </button>
-      </p>
-      <div class="collapse" id="collapseExample">
-        <form>
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-            <input class="form-control" id="listInput" rows="3"></input>
-          </div>
-          <button type="submit" class="btn btn-primary" onsubmit="newBoardList()">new List</button>
-        </form>
-      </div>
-    </div>
-  </div>
-  <img src="img/trash.png" alt="">
+    <!--Modal Structure-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-  <!--Modal Structure-->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <form onsubmit="saveChanges(event)" class="modal-content" id="boardModal">
+          <div class="modal-header">
+            <span id="board-modal-date" class="board-date"></span>
+            <input class="d-none" type="number" id="modal-id">
+            <input type="text" class="modal-title modal-form-none" name="taskTitle" style="font-size:1.8rem"
+              id="modal-title" value="Modal title">
 
-    <div class="modal-dialog modal-dialog-centered">
-      <form onsubmit="saveChanges(event)" class="modal-content" id="boardModal">
-        <div class="modal-header">
-          <span id="board-modal-date" class="board-date"></span>
-          <input class="d-none" type="number" id="modal-id">
-          <input type="text" class="modal-title modal-form-none" name="taskTitle" style="font-size:1.8rem"
-            id="modal-title" value="Modal title">
-
-          <!-- 
+            <!-- 
             <h5 class="modal-title" id="modal-title">Modal title</h5>
           -->
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-border-bottom d-flex justify-content-between">
-          <div>
-            <div class="modal-time-container" id="modal-dueto">Due to Date: </div>
-            <div class="modal-time-container" id="modal-lastUpdate">last Update: </div>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div id="modal-urgency" class="d-flex modal-time-container">Urgency: </div>
-        </div>
-        <div class="modal-body">
-          <textarea id="modal-description" name="taskDescription" class="modal-form-none" cols=30 rows=10
-            value=""> </textarea>
-          <!--
+          <div class="modal-border-bottom d-flex justify-content-between">
+            <div>
+              <div class="modal-time-container" id="modal-dueto">Due to Date: </div>
+              <div class="modal-time-container" id="modal-lastUpdate">last Update: </div>
+            </div>
+            <div id="modal-urgency" class="d-flex modal-time-container">Urgency: </div>
+          </div>
+          <div class="modal-body">
+            <textarea id="modal-description" name="taskDescription" class="modal-form-none" cols=30 rows=10
+              value=""> </textarea>
+            <!--
           <p id="modal-description">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
             modi nostrum magni beatae commodi omnis, quod officiis, eum natus
@@ -156,28 +157,28 @@
             impedit?
           </p>
           -->
-        </div>
-        <div class="modal-footer flex-column">
-          <div id="board-modal-footer" class="d-flex w-100 justify-content-around">
-            <img id="modal-avatar" class="avatar" src="img/profile.png" alt="creator" />
-            <span id="modal-creator"></span>
           </div>
-          <div class="d-flex justify-content-between w-100">
-          <div id="modal-category" class="category"></div>
-<div>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-            Close
-          </button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
-        </div>
+          <div class="modal-footer flex-column">
+            <div id="board-modal-footer" class="board-modal-footer d-flex w-100 justify-content-around">
+              <img id="modal-avatar" class="avatar" src="img/profile.png" alt="creator" />
+              <span id="modal-creator"></span>
+            </div>
+            <div class="board-modal-buttons d-flex justify-content-between w-100">
+              <div id="modal-category" class="category"></div>
+              <div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
+
+
     </div>
-
-
   </div>
-</div>
 </body>
 
 </html>
