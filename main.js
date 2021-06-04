@@ -25,6 +25,7 @@ let GLOBAL_VARIABLES = {
 };
 
 async function init() {
+  includeHTML();
   await downloadFromServer();
   userObjects = JSON.parse(backend.getItem("userObjects")) || [];         // used for login.html, addtask.html
   categoryObjects = JSON.parse(backend.getItem("categoryObjects")) || []; // used for addtask.html
@@ -34,7 +35,7 @@ async function init() {
   //loadBoard();          // interface to board.html
   //loadAddTaskSite();    // interface to addTask.html
   //loadLogs();           // interface to BackLogs.html
-  includeHTML();
+  
 
 }
 
