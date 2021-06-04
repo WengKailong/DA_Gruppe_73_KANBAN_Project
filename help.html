@@ -52,6 +52,12 @@
 
     <!-- style sheet for this page-->
     <link rel="stylesheet" href="help.css" />
+    <script>
+      function contactFormSent(){
+        alert('Your Message has been received. We will give you a feedback in 3 working days.');
+      }
+
+    </script>
   </head>
   <body onload="init(), loginActive()">
     <div class="wrapper">
@@ -70,7 +76,7 @@
           <!-- Input window of adding a new task-->
           <div class="container-fluid mt-5">
             <div class="container-fluid bg-form-input p-4">
-                <form onsubmit="" id="input-help">
+                <form onsubmit="contactFormSent()" id="input-help">
                     <div class="row">
                       <div class="col-sm">
                         <div class="form-group mt-3">

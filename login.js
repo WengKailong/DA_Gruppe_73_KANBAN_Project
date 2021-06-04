@@ -89,6 +89,7 @@ async function createNewUser(e) {
     await saveToServer("userObjects", userObjects);
     await saveToServer("globalVariables", GLOBAL_VARIABLES);
 
+    alert('New User Profile has been created!');
     window.open('/index.html', '_self');
   }
 

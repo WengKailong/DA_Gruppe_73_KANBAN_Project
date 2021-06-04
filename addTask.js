@@ -45,7 +45,7 @@ function createNewTask(e) {
   e.preventDefault();
 
   if (asignedUsers == "") {
-    alert("New Task must be asigned to at least user!");
+    alert("New Task must be asigned to at least one user!");
   } else {
     // get input data from the form
     let inputForm = document.getElementById("input-task");
