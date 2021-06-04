@@ -7,6 +7,13 @@ var formData
 
 let selectedAvatar = '/img/profile.png';
 
+function guestLogin(){
+loginUser.userName = 'guest';
+loginUser.userPassword = 'guest';
+setUserCookie();
+  checkLogin();
+}
+
 function userLogin(e) {
   e.preventDefault();
 
@@ -15,7 +22,6 @@ function userLogin(e) {
 
   dataFromLogin(formData);
   setUserCookie();
-
   checkLogin();
 
 }
@@ -84,13 +90,20 @@ async function createNewUser(e) {
   }else{
     userObjects.push(newUser);
     GLOBAL_VARIABLES.currUserId++;
-  
+    dataFromLogin(formData)
     // update data on server
     await saveToServer("userObjects", userObjects);
     await saveToServer("globalVariables", GLOBAL_VARIABLES);
+<<<<<<< HEAD
 
     alert('New User Profile has been created!');
     window.open('/index.html', '_self');
+=======
+    setUserCookie();
+alert('the User '+ loginUser.userName +' was created successfully')
+//window.open('/index.html', '_self');
+checkLogin();
+>>>>>>> 744e9c6ef61359328300889acaf89ab3298ad61d
   }
 
   

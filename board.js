@@ -247,7 +247,7 @@ function newListObject(){
           <label for="exampleFormControlTextarea1" class="form-label"></label>
           <input class="form-control" id="listInput" rows="1" required></input>
         </div>
-        <button  class="btn btn-primary btn-lg font-bold bg-purple h-100" type="submit">Create</button>
+        <button  class="btn btn-primary btn-lg font-bold bg-purple " type="submit">Create</button>
       </form>
     </div>
   </div>
