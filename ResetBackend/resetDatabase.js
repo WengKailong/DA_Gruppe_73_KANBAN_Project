@@ -9,8 +9,10 @@
 function resetDataBase() {
   // set default users
   let admin = new User(
-    0, 'admin', 'admin', 'admin', 'admin@admin.com', 'profile.png'
+    0, 'profile.png'
   );
+
+  admin.setAdmin();
 
   let userObjects = [admin];
   saveToServer("userObjects", userObjects);

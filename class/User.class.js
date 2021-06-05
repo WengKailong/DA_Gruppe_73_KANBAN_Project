@@ -1,7 +1,7 @@
 class User{
     userId;
     userName;
-    userPassword;   // to be decided
+    userPassword;   
  //   userCategory;
     userEmail;
     userProfileAvatar;
@@ -10,6 +10,12 @@ class User{
         this.userId = id;
         this.userProfileAvatar = avatar;
 
+    }
+
+    setAdmin(){
+        this.userName = 'admin';
+        this.userPassword = 'admin';
+        this.userEmail = 'admin@admin.com';
     }
 
 

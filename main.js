@@ -11,7 +11,7 @@ urgencyColor = ['low', 'normal', 'high']; //in backlog.css are classes with the 
  */
 setURL(
   
-  "http://gruppe-73.developerakademie.com/testBackEnd/smallest_backend_ever-master"
+  "http://gruppe-73.developerakademie.com/smallest_backend_ever-master"
 );
 
 let userObjects = []; // Global variables to load all saved users from server
