@@ -18,6 +18,12 @@ class User{
         this.userEmail = 'admin@admin.com';
     }
 
+    setGuest(){
+        this.userName = 'guest';
+        this.userPassword = 'guest';
+        this.userEmail = 'guest@guest.com';
+    }
+
 
     dataFromInput(formData){
         this.userName = formData.get('userName');

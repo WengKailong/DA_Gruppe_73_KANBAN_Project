@@ -78,14 +78,19 @@ function getCookie() {
 
 function checkUserAndPassword() {
   getCookie();
-  for (let i = 0; i < userObjects.length; i++) {
-    if (userObjects[i]['userName'] == userData.name ) {
-
-      return true;
+  if(userData.name == ''){
+    return false;
+  }else{
+    for (let i = 0; i < userObjects.length; i++) {
+      if (userObjects[i]['userName'] == userData.name ) {
+  
+        return true;
+      }
+  
     }
-
   }
-  return false;
+  
+  
 
 
 }

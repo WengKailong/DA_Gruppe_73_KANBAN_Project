@@ -76,7 +76,7 @@
           <!-- Input window of adding a new task-->
           <div class="container-fluid mt-5">
             <div class="container-fluid bg-form-input p-4">
-                <form onsubmit="contactFormSent()" id="input-help">
+                <form onsubmit="contactFormSent()" action="http://gruppe-73.developerakademie.com/Email/send_mail.php" method="POST" id="input-help">
                     <div class="row">
                       <div class="col-sm">
                         <div class="form-group mt-3">
@@ -84,7 +84,7 @@
                             >NAME</label
                           >
                           <input
-                            name="taskTitle"
+                            name="name"
                             type="text"
                             class="form-control"
                             id="input-help-name"
@@ -98,10 +98,10 @@
                         
                         <div class="form-group mt-3">
                           <label for="input-task-description" class="form-label-text mb-2"
-                            >DESCRIPTION</label
+                            >YOUR MESSAGE</label
                           >
                           <textarea
-                            name="taskDescription"
+                            name="message"
                             class="form-control"
                             id="input-task-description"
                             rows="5"
@@ -118,7 +118,7 @@
                           >
                           <input
                             type="email"
-                            name="taskDueDate"
+                            name="contact-Email"
                             class="form-control"
                             id="input-help-email"
                             placeholder="Enter your Email address"
@@ -130,7 +130,7 @@
                             >URGENCY</label
                           >
                           <select
-                            name="taskUrgency"
+                            name="contact-urgency"
                             class="form-select"
                             id="input-help-urgency"
                             aria-label="Default select example"

@@ -8,7 +8,7 @@ let dropId;
  */
 async function boardInit() {
     await init();
-    loadBoardsanew()
+    loadBoardsanew();
 }
 
 /**

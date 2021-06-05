@@ -51,6 +51,7 @@ function checkPassword() {
     ) {
       loginUser.userPassword = "";
       loginUser.userId = i;
+      console.log("check Password true");
       return true;
     }
   }
@@ -70,7 +71,7 @@ async function createNewUser(e) {
   let inputForm = document.getElementById("input-user");
   var formData = new FormData(inputForm);
 
-  // create new task
+  // create new user
   let newUser = new User(GLOBAL_VARIABLES.currUserId, selectedAvatar);
   newUser.dataFromInput(formData);
 
@@ -78,7 +79,7 @@ async function createNewUser(e) {
     checkForDouble(userObjects, "userName", newUser.userName) === true ||
     checkForDouble(userObjects, "userEmail", newUser.userEmail) === true
   ) {
-    alert("Der Username oder die Emailadresse wird bereits verwendet");
+    alert("This Username or Email adresse has already been used!");
   } else {
     userObjects.push(newUser);
     GLOBAL_VARIABLES.currUserId++;
