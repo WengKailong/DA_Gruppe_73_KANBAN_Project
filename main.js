@@ -11,7 +11,7 @@ urgencyColor = ['low', 'normal', 'high']; //in backlog.css are classes with the 
  */
 setURL(
   
-  "http://gruppe-73.developerakademie.com/testBackEnd/smallest_backend_ever-master"
+  "http://gruppe-73.developerakademie.com/smallest_backend_ever-master"
 );
 
 let userObjects = []; // Global variables to load all saved users from server
@@ -25,6 +25,7 @@ let GLOBAL_VARIABLES = {
 };
 
 async function init() {
+  includeHTML();
   await downloadFromServer();
   userObjects = JSON.parse(backend.getItem("userObjects")) || [];         // used for login.html, addtask.html
   categoryObjects = JSON.parse(backend.getItem("categoryObjects")) || []; // used for addtask.html
@@ -34,7 +35,7 @@ async function init() {
   //loadBoard();          // interface to board.html
   //loadAddTaskSite();    // interface to addTask.html
   //loadLogs();           // interface to BackLogs.html
-  includeHTML();
+  
 
 }
 
@@ -77,14 +78,19 @@ function getCookie() {
 
 function checkUserAndPassword() {
   getCookie();
-  for (let i = 0; i < userObjects.length; i++) {
-    if (userObjects[i]['userName'] == userData.name ) {
-
-      return true;
+  if(userData.name == ''){
+    return false;
+  }else{
+    for (let i = 0; i < userObjects.length; i++) {
+      if (userObjects[i]['userName'] == userData.name ) {
+  
+        return true;
+      }
+  
     }
-
   }
-  return false;
+  
+  
 
 
 }

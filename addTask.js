@@ -24,7 +24,7 @@ function loadAsignToUserSelect() {
   let selectElement = document.getElementById("input-task-asignto");
   selectElement.innerHTML = "";
 
-  for (let i = 1; i < userObjects.length; i++) {
+  for (let i = 2; i < userObjects.length; i++) {
     let user = userObjects[i];
     selectElement.innerHTML += `<a class="dropdown-item" href="#" onclick="asignTaskTo(${user.userId})"
         ><div class="row" style="height: 30px;">
@@ -45,7 +45,7 @@ function createNewTask(e) {
   e.preventDefault();
 
   if (asignedUsers == "") {
-    alert("New Task must be asigned to at least user!");
+    alert("New Task must be asigned to at least one user!");
   } else {
     // get input data from the form
     let inputForm = document.getElementById("input-task");

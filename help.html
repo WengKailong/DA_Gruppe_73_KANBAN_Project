@@ -52,6 +52,12 @@
 
     <!-- style sheet for this page-->
     <link rel="stylesheet" href="help.css" />
+    <script>
+      function contactFormSent(){
+        alert('Your Message has been received. We will give you a feedback in 3 working days.');
+      }
+
+    </script>
   </head>
   <body onload="init(), loginActive()">
     <div class="wrapper">
@@ -70,7 +76,7 @@
           <!-- Input window of adding a new task-->
           <div class="container-fluid mt-5">
             <div class="container-fluid bg-form-input p-4">
-                <form onsubmit="" id="input-help">
+                <form onsubmit="contactFormSent()" action="http://gruppe-73.developerakademie.com/Email/send_mail.php" method="POST" id="input-help">
                     <div class="row">
                       <div class="col-sm">
                         <div class="form-group mt-3">
@@ -78,12 +84,13 @@
                             >NAME</label
                           >
                           <input
-                            name="taskTitle"
+                            name="name"
                             type="text"
                             class="form-control"
                             id="input-help-name"
                             aria-describedby="emailHelp"
                             placeholder="Enter your name"
+                            required
                           />
                           <!-- <small id="emailHelp" class="form-text text-muted"
                               >We'll never share your email with anyone else.</small
@@ -92,13 +99,14 @@
                         
                         <div class="form-group mt-3">
                           <label for="input-task-description" class="form-label-text mb-2"
-                            >DESCRIPTION</label
+                            >YOUR MESSAGE</label
                           >
                           <textarea
-                            name="taskDescription"
+                            name="message"
                             class="form-control"
                             id="input-task-description"
                             rows="5"
+                            required
                           ></textarea>
                           <!-- <small id="emailHelp" class="form-text text-muted"
                               >We'll never share your email with anyone else.</small
@@ -112,10 +120,11 @@
                           >
                           <input
                             type="email"
-                            name="taskDueDate"
+                            name="contact-Email"
                             class="form-control"
                             id="input-help-email"
                             placeholder="Enter your Email address"
+                            required
                           />
                          
                         </div>
@@ -124,10 +133,11 @@
                             >URGENCY</label
                           >
                           <select
-                            name="taskUrgency"
+                            name="contact-urgency"
                             class="form-select"
                             id="input-help-urgency"
                             aria-label="Default select example"
+                            required
                           >
                             <option selected>Open this select menu</option>
                             <option value="0">Low</option>

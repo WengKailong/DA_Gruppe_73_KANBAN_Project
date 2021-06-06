@@ -8,7 +8,7 @@ let dropId;
  */
 async function boardInit() {
     await init();
-    loadBoardsanew()
+    loadBoardsanew();
 }
 
 /**
@@ -42,7 +42,7 @@ function writeTasks(id) {
 }
 
 function taskPart1(id) {
-    return `<div id="id${taskObjects[id]['taskId']}" class="board-entry " data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillModal(${id}) " draggable="true" ondragstart="drag(event, ${id} )" ondragover="">
+    return `<div id="id${taskObjects[id]['taskId']}" class="board-entry " data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillModal(${id}) " draggable="true" ondragstart="drag(event, ${id} )" ondrop="false;" ondragover="false;">
         <div class="${taskObjects[id]['taskCategory']}">
            <div class="d-flex justify-content-between w-100"> 
                 <span class="board-date">${taskObjects[id]['taskDueDate']}</span> 
