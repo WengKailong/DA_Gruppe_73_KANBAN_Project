@@ -196,7 +196,8 @@ function newListObject() {
     newList.listName = newBoardListInput
 
     listObjects.push(newList);
-    document.getElementById('fab')
+    let fab = document.getElementById('fab');
+    fab.setAttribute('aria-expanded', false)
     document.getElementById('listInput').value = "";
     document.getElementById('collapseExample').classList.remove("show")
     
