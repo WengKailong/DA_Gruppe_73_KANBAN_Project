@@ -124,7 +124,28 @@
       </div>
     </div>
     </div>
+    
 
+    <!--action Button-->
+    <div id="fab" class="fab" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+    aria-expanded="false" aria-controls="collapseExample"> + </div>
+    
+    <p style="">
+
+      
+    </p>
+    <div id="newList" class="collapse newList" id="collapseExample">
+      <form onsubmit="newBoardList(event)">
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label"></label>
+          <input class="form-control width280" id="listInput" rows="1" required></input>
+        </div>
+        <button  class="btn btn-primary btn-lg font-bold bg-purple width280" type="submit">Create new List</button>
+      </form>
+    </div>
+  </div>
+ 
+  </div></div>`
     <!--Modal Structure-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
@@ -139,6 +160,8 @@
             <!-- 
             <h5 class="modal-title" id="modal-title">Modal title</h5>
           -->
+          <button type="button" class="btn-close btn-delete" onclick="deleteTask()" data-bs-dismiss="modal" aria-label="Delete"></button>
+
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-border-bottom d-flex justify-content-between">

@@ -89,8 +89,8 @@ async function createNewUser(e) {
     await saveToServer("globalVariables", GLOBAL_VARIABLES);
     setUserCookie();
     alert("the User " + loginUser.userName + " was created successfully");
-    window.open('/index.html', '_self');
-    //checkLogin();
+    window.open('/board.html', '_self');
+    
   }
 
   // add new task to existing tasks

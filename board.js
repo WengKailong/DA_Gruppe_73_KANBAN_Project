@@ -2,6 +2,7 @@
  * 
  */
 let dropId;
+let currentId;
 
 /**
  * 
@@ -14,7 +15,7 @@ async function boardInit() {
 /**
  * 
  */
-function loadBoardsanew(){
+function loadBoardsanew() {
     loadListsToBoard();
     for (let i = 0; i < taskObjects.length; i++) {
         writeTasks(i);
@@ -38,7 +39,7 @@ function loadBoardsanew(){
  * @param {} id allTasks object
  */
 function writeTasks(id) {
-    document.getElementById(taskObjects[id]['taskStatus']).innerHTML += taskPart1(id) + taskPartAssignedTo(id) 
+    document.getElementById(taskObjects[id]['taskStatus']).innerHTML += taskPart1(id) + taskPartAssignedTo(id)
 }
 
 function taskPart1(id) {
@@ -64,7 +65,7 @@ function taskPartAssignedTo(id) {
         
     `
     }
-    assignedTo +=`</div></div>
+    assignedTo += `</div></div>
     </div>
 </div>`
     return assignedTo;
@@ -82,12 +83,14 @@ function fillModal(id) {
     removeOldModalData()
     let urgency = urgencyPicker(taskObjects[id])
     let modalFooter = document.getElementById('board-modal-footer');
+    currentId = id;
     modalFooter.innerHTML = "";
 
-    document.getElementById('modal-dueto').innerHTML = "Due to Date: "+ taskObjects[id]['taskDueDate']
-    document.getElementById('modal-lastUpdate').innerHTML = "last Update: "+ taskObjects[id]['lastUpDate']
+
+    document.getElementById('modal-dueto').innerHTML = "Due to Date: " + taskObjects[id]['taskDueDate']
+    document.getElementById('modal-lastUpdate').innerHTML = "last Update: " + taskObjects[id]['lastUpDate']
     document.getElementById('modal-urgency').classList.add(urgency)
-    document.getElementById('modal-urgency').innerHTML= "Urgency: "+ urgency
+    document.getElementById('modal-urgency').innerHTML = "Urgency: " + urgency
 
     document.getElementById('modal-id').value = taskObjects[id]['taskId'];
     document.getElementById('modal-title').value = taskObjects[id]['taskTitle'];
@@ -95,7 +98,7 @@ function fillModal(id) {
     document.getElementById('modal-category').innerHTML = categoryObjects[taskObjects[id]['taskCategory']];
 
     for (let i = 0; i < taskObjects[id]['taskAsignedTo'].length; i++) {
-       // let modalAvatar = document.getElementById('modal-avatar');
+        // let modalAvatar = document.getElementById('modal-avatar');
         // modalAvatar.src = userObjects[taskObjects[id]['taskAsignedTo'][i]]['userProfileAvatar'];
         modalFooter.innerHTML += `<div class="d-flex flex-column align-items-center p-1">
     <img  class="avatar" src=${userObjects[taskObjects[id]['taskAsignedTo'][i]]['userProfileAvatar']} alt=${userObjects[taskObjects[id]['taskAsignedTo'][i]]['userName']} />
@@ -105,7 +108,7 @@ function fillModal(id) {
     }
 }
 
-function removeOldModalData(){
+function removeOldModalData() {
     document.getElementById('modal-urgency').classList.remove('high', 'normal', 'low');
 }
 
@@ -122,8 +125,8 @@ function saveChanges(ev) {
 /**
  * 
  */
-function changeTask(){
-    let newTask = { 
+function changeTask() {
+    let newTask = {
         title: "",
         description: "",
     }
@@ -142,82 +145,87 @@ function changeTask(){
 
 
 
-    /**
-     * Drag and Drop
-     */
-    function allowDrop(ev) {
-        ev.preventDefault();
-    }
+/**
+ * Drag and Drop
+ */
+function allowDrop(ev) {
+    ev.preventDefault();
+}
 
-    function drag(ev, idNr) {
-        ev.dataTransfer.setData("text", ev.target.id);
-        dropId = idNr;
-    }
+function drag(ev, idNr) {
+    ev.dataTransfer.setData("text", ev.target.id);
+    dropId = idNr;
+}
 
-    /**
-     * 
-     * @param {Object} ev dragged object
-     * @param {Number} dropCategory 
-     * changes allTasks[].status into new category
-     */
-    function drop(ev, dropCategory) {
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        ev.target.appendChild(document.getElementById(data));
-        taskObjects[dropId]['taskStatus'] = dropCategory;
-        newLastUpdate(dropId)
-        saveToServer("taskObjects", taskObjects);
-    }
+/**
+ * 
+ * @param {Object} ev dragged object
+ * @param {Number} dropCategory 
+ * changes allTasks[].status into new category
+ */
+function drop(ev, dropCategory) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+    taskObjects[dropId]['taskStatus'] = dropCategory;
+    newLastUpdate(dropId)
+    saveToServer("taskObjects", taskObjects);
+}
 /**
  * 
  * @param {*} ev 
  */
-    function newBoardList(ev) {
-        ev.preventDefault();
-        newListObject();
-        saveToServer("listObjects", listObjects);
-        loadBoardsanew()
-    }
+function newBoardList(ev) {
+    ev.preventDefault();
+    newListObject();
+    saveToServer("listObjects", listObjects);
+    loadBoardsanew()
+}
 
 
-    /**
-     * 
-     */
-function newListObject(){
-    let newList = { 
-        listId : "",
+/**
+ * 
+ */
+function newListObject() {
+    let newList = {
+        listId: "",
         listName: ""
     }
     let newBoardListInput = document.getElementById('listInput').value;
-     newList.listId = newBoardListInput;
-     newList.listName = newBoardListInput
+    newList.listId = newBoardListInput;
+    newList.listName = newBoardListInput
 
     listObjects.push(newList);
+    document.getElementById('fab')
+    document.getElementById('listInput').value = "";
+    document.getElementById('collapseExample').classList.remove("show")
+    
+
+
 }
 
 /**
  * 
  */
-    function loadListsToBoard() {
-        let loadElement = document.getElementById("board-body");
-        loadElement.innerHTML = '';
+function loadListsToBoard() {
+    let loadElement = document.getElementById("board-body");
+    loadElement.innerHTML = '';
 
-        for (let i = 0; i < listObjects.length; i++) {
-            let list = listObjects[i];
-
+    for (let i = 0; i < listObjects.length; i++) {
+        let list = listObjects[i];
+        if (i <= 3) {
+            loadElement.innerHTML += writeListColumnBasic(list)
+        }
+        else {
             loadElement.innerHTML += writeListColumn(list)
         }
-        loadElement.innerHTML += buttonNewList()
     }
+   // loadElement.innerHTML += buttonNewList()
+}
 
-    /**
-     * 
-     * @param {*} list 
-     * @returns 
-     */
-    function writeListColumn(list) {
-        return `<div class="board-column">
-    <h2>${list.listName}</h2>
+function writeListColumnBasic(list) {
+    return `<div class="board-column"><div class="d-flex justify-content-center align-items-center">
+    <h2>${list.listName}</h2> </div>
     <div
       id="${list.listId}"
       class="board-column-text-board"
@@ -225,21 +233,39 @@ function newListObject(){
       ondragover="allowDrop(event)"
     ></div>
   </div>`;
-    }
+}
 
-    /**
-     * 
-     * @returns 
-     */
-    function buttonNewList() {
-        return `<div class=""><div>
-    <p style="flex-direction: column">
 
-      <button class="btn btn-primary btn-lg font-bold bg-purple h-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-        aria-expanded="false" aria-controls="collapseExample">
-        new List
+
+/**
+ * 
+ * @param {*} list 
+ * @returns 
+ */
+function writeListColumn(list) {
+    return `<div class="board-column"><div class="d-flex justify-content-end align-items-center">
+    <h2>${list.listName}</h2> <button type="button" class="btn-close"  aria-label="Delete" onclick="deleteList('${list.listId}')"></button></div>
+    <div
+      id="${list.listId}"
+      class="board-column-text-board"
+      ondrop="drop(event, '${list.listId}')"
+      ondragover="allowDrop(event)"
+    ></div>
+  </div>`;
+}
+
+/**
+ * 
+ * @returns 
+ 
+function buttonNewList() {
+    return `
+    <div class="fab" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+    aria-expanded="false" aria-controls="collapseExample"> + </div>
     
-      </button>
+    <p style="">
+
+      
     </p>
     <div class="collapse" id="collapseExample">
       <form onsubmit="newBoardList(event)">
@@ -251,20 +277,57 @@ function newListObject(){
       </form>
     </div>
   </div>
-  <img ondragover="allowDrop(event)" class="m-3" ondrop="drop(event, 'backlog') " src="img/trash.png" alt="">
+ 
   </div></div>`
-    }
+}*/
+// <img ondragover="allowDrop(event)" class="m-3" ondrop="drop(event, 'backlog') " src="img/trash.png" alt="">
 
-    
 
-    function newLastUpdate(id){
-        let currentTask = taskObjects[id];
-        let changedTask = new Task(id);
-        currentTask.lastUpDate = changedTask.lastUpDate;
-        taskObjects[id] = currentTask;
-        
+function newLastUpdate(id) {
+    let currentTask = taskObjects[id];
+    let changedTask = new Task(id);
+    currentTask.lastUpDate = changedTask.lastUpDate;
+    taskObjects[id] = currentTask;
+
+}
+
+
+
+function deleteList(listName) {
+
+    for (let i = 0; i < listObjects.length; i++) {
+        if (listName === listObjects[i].listId) {
+            if (checkEmptyList(listName) == true) {
+                alert('to remove a List it has to be empty')
+            } else {
+
+                listObjects.splice(i, 1)
+            }
+        }
+        saveToServer("listObjects", listObjects);
+        loadBoardsanew()
     }
-    
-    function newSize(){
-        document.getElementById('trash').style = "height: 128px; width:128px";
+}
+function checkEmptyList(listName) {
+    for (let i = 0; i < taskObjects.length; i++) {
+
+        if (taskObjects[i].taskStatus == listName) {
+            return true
+        }
+
     }
+}
+
+function deleteTask() {
+    let check = confirm(
+        `are you sure you want to delete this task? 
+
+You will still be able to see it in the Backlog`)
+    if (check == true) {
+            taskObjects[currentId]['taskStatus'] = "backlog";
+
+        newLastUpdate(currentId)
+        saveToServer("taskObjects", taskObjects);
+        loadBoardsanew();
+    }
+}
