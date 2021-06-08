@@ -8,7 +8,6 @@
 setURL("http://gruppe-73.developerakademie.com/smallest_backend_ever-master");
 
 async function init() {
-  console.log("test");
   await downloadFromServer();
   // userObjects = JSON.parse(backend.getItem("userObjects")) || []; // used for login.html, addtask.html
   // categoryObjects = JSON.parse(backend.getItem("categoryObjects")) || []; // used for addtask.html
@@ -52,6 +51,9 @@ function resetDataBase() {
     new List("done", "DONE"),
   ];
   saveToServer("listObjects", listObjects);
+
+  let logObjects = [];
+  saveToServer("logObjects", logObjects);
 
   // set initial global variables for ids
   let GLOBAL_VARIABLES = {

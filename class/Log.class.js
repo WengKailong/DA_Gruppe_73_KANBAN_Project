@@ -1,4 +1,7 @@
 class Log{
+    operationType;
+    creater;
+    taskName;
     userAvatar; 
     userName;
     userEmail; 
@@ -6,7 +9,10 @@ class Log{
     logDetails; 
     UrgencyColor;
 
-    constructor(taskObject, userObject, UrgencyColor){
+    constructor(operationType, creater, taskObject, userObject, UrgencyColor){
+        this.operationType = operationType;
+        this.creater = creater;
+        this.taskName = taskObject.taskTitle;
         this.userAvatar = userObject.userProfileAvatar;
         this.userName = userObject.userName;
         this.userEmail = userObject.userEmail;

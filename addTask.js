@@ -58,6 +58,10 @@ function createNewTask(e) {
     // add new task to existing tasks
     taskObjects.push(newTask);
 
+    createNewLogs('Task added', newTask);
+
+    
+
     // update data on server
     saveToServer("taskObjects", taskObjects);
     GLOBAL_VARIABLES.currTaskId++;
@@ -96,3 +100,5 @@ function asignTaskTo(userId) {
   console.log(asignedUsers);
   loadAsignedUsers();
 }
+
+

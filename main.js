@@ -24,13 +24,16 @@ let GLOBAL_VARIABLES = {
   currTaskId: 0,
 };
 
+let logObjects = [];
+
 async function init() {
   includeHTML();
   await downloadFromServer();
   userObjects = JSON.parse(backend.getItem("userObjects")) || [];         // used for login.html, addtask.html
   categoryObjects = JSON.parse(backend.getItem("categoryObjects")) || []; // used for addtask.html
   taskObjects = JSON.parse(backend.getItem("taskObjects")) || [];         // used for addtask.html
-  listObjects = JSON.parse(backend.getItem("listObjects")) || [];         // used for board.html
+  listObjects = JSON.parse(backend.getItem("listObjects")) || []; 
+  logObjects =  JSON.parse(backend.getItem("logObjects")) || [];       // used for addTask.html, backLog.html
   GLOBAL_VARIABLES = JSON.parse(backend.getItem("globalVariables")) || {};// used for every sites
   //loadBoard();          // interface to board.html
   //loadAddTaskSite();    // interface to addTask.html
@@ -132,4 +135,21 @@ async function setUserAvatar(){
 
   },500);
   
+}
+
+function createNewLogs(operationType, task){
+  for (let j = 0; j < task.taskAsignedTo.length; j++) {
+    let id = task.taskAsignedTo[j];
+    let user = new User();
+    user = user.getUserById(id, userObjects);
+    let urgency = urgencyPicker(task) //returns value NULL, "low", "normal", "high" 
+    let newLog = new Log(operationType, userData.name, task, user, urgency);
+    logObjects.push(newLog);
+
+    console.log(logObjects);
+   
+
+  }
+
+  saveToServer("logObjects", logObjects);
 }

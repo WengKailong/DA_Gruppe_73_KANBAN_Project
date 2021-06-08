@@ -323,12 +323,14 @@ function deleteTask() {
     let check = confirm(
         `are you sure you want to delete this task? 
 
-You will still be able to see it in the Backlog`)
+Your action will still be able to see it in the Backlog`);
     if (check == true) {
             taskObjects[currentId]['taskStatus'] = "backlog";
 
         newLastUpdate(currentId)
         saveToServer("taskObjects", taskObjects);
+
+        createNewLogs('Task deleted',taskObjects[currentId]);
         loadBoardsanew();
     }
 }
