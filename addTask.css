@@ -67,6 +67,13 @@
   overflow: hidden;
 }
 
+.profile-delete-icon{
+  position: absolute;
+  transform: translateX(25px) translateY(-10px);
+  color: red;
+  cursor: pointer;
+}
+
 .asign-task-to-new-user {
   height: 40px;
   width: 40px;
