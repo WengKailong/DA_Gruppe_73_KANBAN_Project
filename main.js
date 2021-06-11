@@ -130,7 +130,7 @@ async function setUserAvatar(){
   setTimeout(() => {
     let currentUser = new User();
     currentUser = currentUser.getUserByName(userData.name);
-    console.log(currentUser);
+   // console.log(currentUser);
     document.getElementById('nav-user-avatar').src = currentUser.userProfileAvatar;
 
   },500);

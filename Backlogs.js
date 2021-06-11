@@ -3,7 +3,8 @@
  * required global parameter is taskObjects[]
  */
 
-function loadLogs() {
+async function loadLogs() {
+  await init()
   /**
    * this function is to load BackLogs Array from task objects from server
    */

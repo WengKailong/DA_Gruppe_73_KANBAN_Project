@@ -43,7 +43,7 @@ function writeTasks(id) {
 }
 
 function taskPart1(id) {
-    return `<div id="id${taskObjects[id]['taskId']}" class="board-entry " data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillModal(${id}) " draggable="true" ondragstart="drag(event, ${id} )" ondrop="false;" ondragover="false;">
+    return `<div  id="id${taskObjects[id]['taskId']}" class="board-entry" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillModal(${id}) " draggable="true" ondragstart="drag(event, ${id} )" ondrop="false;" ondragover="noAllowDrop(event)">
         <div class="${taskObjects[id]['taskCategory']}">
            <div class="d-flex justify-content-between w-100"> 
                 <span class="board-date">${taskObjects[id]['taskDueDate']}</span> 
@@ -52,6 +52,10 @@ function taskPart1(id) {
             <p class="board-text-short">${taskObjects[id]['taskDescription']}</p>
             <div class="d-flex  board-task-footer">
                 <div class="category">${categoryObjects[taskObjects[id]['taskCategory']]}</div> <div class="board-avatar-container">         `
+}
+
+function noAllowDrop(ev) {
+    ev.stopPropagation();
 }
 /**
  * 
@@ -94,7 +98,7 @@ function fillModal(id) {
 
     document.getElementById('modal-id').value = taskObjects[id]['taskId'];
     document.getElementById('modal-title').value = taskObjects[id]['taskTitle'];
-    document.getElementById('modal-description').innerHTML = taskObjects[id]['taskDescription'];
+    document.getElementById('modal-description').value = taskObjects[id]['taskDescription'];
     document.getElementById('modal-category').innerHTML = categoryObjects[taskObjects[id]['taskCategory']];
 
     for (let i = 0; i < taskObjects[id]['taskAsignedTo'].length; i++) {
@@ -116,11 +120,19 @@ function removeOldModalData() {
  * 
  * @param {Event} ev 
  */
-function saveChanges(ev) {
-    ev.preventDefault();
+ function saveChanges(event) {
+    event.preventDefault();
+    
+   
     changeTask();
-    saveToServer("taskObjects", taskObjects);
+    
+     saveToServer("taskObjects", taskObjects);
+     
+        document.getElementById("closebtn").click();
+   
+    
     loadBoardsanew();
+    
 }
 /**
  * 
@@ -131,7 +143,7 @@ function changeTask() {
         description: "",
     }
 
-    let id = document.getElementById('modal-id').value
+    let id = document.getElementById('modal-id').value;
     let modalData = document.getElementById('boardModal');
     formData = new FormData(modalData);
     //new Task() didn't work, this is a workaround

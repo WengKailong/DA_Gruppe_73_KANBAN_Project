@@ -41,7 +41,7 @@ function loadAsignToUserSelect() {
  * @param {Object} newTask data object to create new task object
  */
 
-function createNewTask(e) {
+async function createNewTask(e) {
   e.preventDefault();
 
   if (asignedUsers == "") {
@@ -63,9 +63,9 @@ function createNewTask(e) {
     
 
     // update data on server
-    saveToServer("taskObjects", taskObjects);
+    await saveToServer("taskObjects", taskObjects);
     GLOBAL_VARIABLES.currTaskId++;
-    saveToServer("globalVariables", GLOBAL_VARIABLES);
+    await saveToServer("globalVariables", GLOBAL_VARIABLES);
     alert("New Task has been created succesfully! Check it out in Board.");
   }
 }

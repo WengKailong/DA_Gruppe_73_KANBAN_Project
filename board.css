@@ -194,6 +194,10 @@ h2 {
     width: 280px;
 }
 
+.dragoverborder{
+    padding:280px;
+}
+
 @media (max-width: 850px) {
     .newList {
         left: 25%;
