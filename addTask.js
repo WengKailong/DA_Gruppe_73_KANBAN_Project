@@ -51,22 +51,24 @@ async function createNewTask(e) {
     let inputForm = document.getElementById("input-task");
     var formData = new FormData(inputForm);
 
-    // create new task
-    let newTask = new Task(GLOBAL_VARIABLES, asignedUsers);
-    newTask.dataFromInput(formData);
+    if (!checkTaskName(formData.get("taskTitle"))) {
+      // create new task
+      let newTask = new Task(GLOBAL_VARIABLES, asignedUsers);
+      newTask.dataFromInput(formData);
 
-    // add new task to existing tasks
-    taskObjects.push(newTask);
+      // add new task to existing tasks
+      taskObjects.push(newTask);
 
-    createNewLogs('Task added', newTask);
+      createNewLogs("Task added", newTask);
 
-    
-
-    // update data on server
-    await saveToServer("taskObjects", taskObjects);
-    GLOBAL_VARIABLES.currTaskId++;
-    await saveToServer("globalVariables", GLOBAL_VARIABLES);
-    alert("New Task has been created succesfully! Check it out in Board.");
+      // update data on server
+      await saveToServer("taskObjects", taskObjects);
+      GLOBAL_VARIABLES.currTaskId++;
+      await saveToServer("globalVariables", GLOBAL_VARIABLES);
+      alert("New Task has been created succesfully! Check it out in Board.");
+    } else {
+      alert('Task already exists, please enter a new task title!');
+    }
   }
 }
 
@@ -76,7 +78,7 @@ function loadAsignedUsers() {
   loadElement.innerHTML = "";
 
   for (let i = 0; i < asignedUsers.length; i++) {
-     userId = asignedUsers[i];
+    userId = asignedUsers[i];
     let user = new User();
     user = user.getUserById(userId, userObjects);
     loadElement.innerHTML += `
@@ -107,12 +109,25 @@ function asignTaskTo(userId) {
   loadAsignedUsers();
 }
 
-function deleteAsignTo(userId){
-  
+function deleteAsignTo(userId) {
   let idx = asignedUsers.indexOf(userId);
-  asignedUsers.splice(idx,1);
-  console.log('delete user from asigned to', userId, 'at index of', idx);
+  asignedUsers.splice(idx, 1);
+  console.log("delete user from asigned to", userId, "at index of", idx);
   loadAsignedUsers();
 }
 
+function checkTaskName(taskName){
 
+  for (let i = 0; i < taskObjects.length; i++) {
+    let task = taskObjects[i];
+    if(task.taskTitle == taskName){
+      return true;
+    }
+    
+  }
+  
+    
+  
+
+  return false;
+}
